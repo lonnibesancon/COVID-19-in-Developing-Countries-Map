@@ -228,6 +228,8 @@
         var color1 = "rgba(255,255,255,0.85)"
         var color2 = "rgba(165,15,21,0.85)"
 
+        var tooltip_ref_point_coordinates = null ;
+
         var colorScale = d3.scaleLinear()
             .range([color1, color2]); //"rgba(103,0,13,0.8)"]);
 
@@ -261,12 +263,13 @@
 
             clickedData = true ;
             Tooltip.style("opacity", 1)
-            var tooltip_x = (d3.event.pageX+10) + "px"
-            var tooltip_y = (d3.event.pageY-offsetYTooltip) + "px"
+            /*tooltip_x = (d3.event.pageX+10) + "px"
+            tooltip_y = (d3.event.pageY-offsetYTooltip) + "px"*/
 
             var projection = project(d.geometry.coordinates)
-            tooltip_x = (projection.x+tooltipXOffset)+"px"
-            tooltip_y = (projection.y+tooltipYOffset)+"px"
+            tooltip_ref_point_coordinates = d.geometry.coordinates ;
+            var tooltip_x = (projection.x+tooltipXOffset)+"px"
+            var tooltip_y = (projection.y+tooltipYOffset)+"px"
             var location
             if(d.properties.location == "National Study"){
                 location = d.properties.country +" [National Study]"
@@ -285,6 +288,7 @@
         var mouseClickMap = function(d) {
             if(!clickedData){
                 Tooltip.style("opacity", 0)    
+                tooltip_ref_point_coordinates = null ;
             }
             clickedData = false ;
             
@@ -573,6 +577,15 @@
                 let coordinates = ""+projection.x+","+projection.y;
                 return "translate("+coordinates+")"
             });
+        if(tooltip_ref_point_coordinates!=null){
+            let coordinates = project(tooltip_ref_point_coordinates)
+            var tooltip_x = (coordinates.x+tooltipXOffset)+"px"
+            var tooltip_y = (coordinates.y+tooltipYOffset)+"px"
+            d3.selectAll(".tooltip")
+                .style("left", tooltip_x)
+                .style("top", tooltip_y)
+        }
+        
       }
 
 
