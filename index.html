@@ -54,7 +54,7 @@
     }
     .national{
         stroke: white;
-        stroke-width: 3px;
+        stroke-width: 4px;
     }
     .legend{
         z-index: 120;
@@ -74,7 +74,7 @@
     <div id="Text">
         <h1> Assessing the Burden of COVID-19 in Developing Countries: Systematic Review, Meta-Analysis, and Public Policy Implications </h1>
         <h2> Interactive map of all included studies </h2>
-        <p>A blurb of text to explain the purpose of this map</p>
+        <p>This map displays the location and seroprevalence of all the studies included in our paper "<a href="https://www.medrxiv.org/content/10.1101/2021.09.29.21264325v1.full-text">Assessing the Burden of COVID-19 in Developing Countries: Systematic Review, Meta-Analysis, and Public Policy Implications.</a>"<br> You can click on a study for more information.</p>
     </div>
     <div id="controls">
         <div id="inclusion">
@@ -109,6 +109,7 @@
                   <label for="local">Local (city or county)</label>
                 </div>
             </fieldset>
+            <!--
             <fieldset class="inline">
                 <legend>Prevalence distribution accross ages (uncheck to exclude):</legend>
                 <div>
@@ -124,6 +125,7 @@
                   <label for="increasing">Increasing Prevalence By Age</label>
                 </div>
             </fieldset>
+            -->
         </div>
     </div>
     <div id="map"></div>
@@ -145,6 +147,12 @@
         var include_uniform = true ;
         var include_decreasing = true ;
         var include_increasing = true ;
+
+
+        const age_specific_ifr = "Age-Specific IFR"
+        const population_ifr = "Population IFR"
+        const age_specific_prevalence = "Age-Specific Prevalence"
+        const overall_prevalence = "Overall Prevalence"
 
         function changeAgeIFR() {
             include_age_specific_IFR = !include_age_specific_IFR
@@ -187,25 +195,25 @@
             data_to_display =  []
             for(var i = 0 ; i < initial_data.features.length ; i++){
                 let elem = initial_data.features[i]
-                if(include_age_specific_IFR == false && elem.properties.Type == "Age-specific-IFR"){
+                if(include_age_specific_IFR == false && elem.properties.study_info == age_specific_ifr){
                     continue
                 }
-                if(include_population_IFR == false && elem.properties.Type == "Population-IFR"){
+                if(include_population_IFR == false && elem.properties.study_info == population_ifr){
                     continue
                 }
-                if(include_age_specific_prevalence == false && elem.properties.Type == "Age-specific-Prevalence"){
+                if(include_age_specific_prevalence == false && elem.properties.study_info == age_specific_prevalence){
                     continue                 
                 }
-                if(include_overall_prevalence == false && elem.properties.Type == "Overall-Prevalence"){
+                if(include_overall_prevalence == false && elem.properties.study_info == overall_prevalence){
                     continue
                 }
-                if(include_local == false && elem.properties.location != "National Study"){
+                if(include_local == false && elem.properties.location_label != "National Study"){
                     continue
                 }
-                if(include_national == false && elem.properties.location == "National Study"){
+                if(include_national == false && elem.properties.location_label == "National Study"){
                     continue
                 }
-                if(include_uniform == false && elem.properties.AgeClassification == "Uniform"){
+                /*if(include_uniform == false && elem.properties.AgeClassification == "Uniform"){
                     continue
                 }
                 if(include_decreasing == false && elem.properties.AgeClassification == "Declining"){
@@ -213,7 +221,7 @@
                 }
                 if(include_increasing == false && elem.properties.AgeClassification == "Increasing"){
                     continue
-                }
+                }*/
                 data_to_display.push(elem)
             }
             createDots(data_to_display)
@@ -271,15 +279,15 @@
             var tooltip_x = (projection.x+tooltipXOffset)+"px"
             var tooltip_y = (projection.y+tooltipYOffset)+"px"
             var location
-            if(d.properties.location == "National Study"){
+            if(d.properties.location_label == "National Study"){
                 location = d.properties.country +" [National Study]"
             }
             else{
-                location = (d.properties.location + " ["+d.properties.country+"]")
+                location = (d.properties.location_label + " ["+d.properties.country+"]")
 
             }
             Tooltip
-            .html("Location:<br>"+location + "<br><br>Type:<br>" + d.properties.Type + "<br><br>Mean Seroprevalence:<br>" + d.properties.Mean+"<br><br>Distribution accross age:<br>"+ d.properties.AgeClassification+"<br><br><a href='"+d.properties.link+"'>Link to the study</a>")
+            .html("Location:<br>"+location + "<br><br>Type:<br>" + d.properties.study_info + "<br><br>Mean Seroprevalence:<br>" + d.properties.mean+"<br><br>Assay name:<br>"+d.properties.assay_name)
             .style("left", tooltip_x)
             .style("top", tooltip_y)
         }
@@ -309,7 +317,7 @@
             .then(function(data){
                 initial_data = JSON.parse(JSON.stringify(data))
                 //initial_data = data
-                updateMaxMinForColorScale(data,"Mean")
+                updateMaxMinForColorScale(data,"mean")
                 createLegend()
                 createMap()
                 makeGeoJson(data)
@@ -322,9 +330,11 @@
             //style: "mapbox://styles/mapbox/light-v9", // stylesheet location
             //style: "mapbox://styles/lobenichou/cjto9zfpj00jq1fs7gajbuaas?fresh=true",
             style: "https://api.maptiler.com/maps/darkmatter/style.json?key=vzWoiH8YygJqMjY0TcSt ",
+            
+
 
             zoom: 1.8, // starting zoom
-            maxZoom: 3.7,
+            maxZoom: 10.2,
             });
 
 
@@ -377,7 +387,7 @@
             .style("border-radius", "5px")
             .style("border-color","white")
 
-        var data = ["Age-specific-IFR","Population-IFR","Age-specific-Prevalence","Overall-Prevalence"]
+        var data = [age_specific_ifr,population_ifr,age_specific_prevalence,overall_prevalence]
 
 
         //First we create the legend for the shapes
@@ -542,19 +552,19 @@
             .append("path")
             //.attr("class","dots")
             .attr("class", function(d){
-                if(d.properties.location == "National Study"){
+                if(d.properties.location_label == "National Study"){
                     return "dots national"
                 }
                 return "dots"
             })
             .style("fill", function(d){
-                var color = colorScale(d.properties.Mean);
+                var color = colorScale(d.properties.mean);
                 return(color)
             })
             .attr("d", d3.symbol()
                 .size(200)
                 .type(function(d) { 
-                    return(getShape(d.properties.Type))
+                    return(getShape(d.properties.study_info))
                 })
 
             )
@@ -591,28 +601,34 @@
 
 
         function updateMaxMinForColorScale(data, column_name){
-            var max =d3.max(data, function(d) {  return d[column_name]; });
-            var min =d3.min(data, function(d) {  return d[column_name];})
+            console.log("DATA")
+            console.dir(data)
+            var max =d3.max(data, function(d) {  return +d[column_name]; });
+            var min =d3.min(data, function(d) {  return +d[column_name];})
+            console.log("Max = ")
+            console.log(max)
             colorScale.domain([0,max]);
         }
 
         function getShape(input){
             if(display_study_type){
-                if (input == "Age-specific-IFR"){
+                console.log("Input=")
+                console.log(input)
+                if (input == age_specific_ifr){
                     return d3.symbolCircle;
                 }
-                if(input == "Population-IFR"){
+                if(input == population_ifr){
                     return d3.symbolSquare;
                 }
-                if(input == "Age-specific-Prevalence"){
+                if(input == age_specific_prevalence){
                     return d3.symbolDiamond;
                 }
-                if(input == "Overall-Prevalence"){
+                if(input == overall_prevalence){
                     return d3.symbolCross;
                 }
                 console.log("Error on study type")
             }
-            else if(display_age_classification){
+            /*else if(display_age_classification){
                 if (input == "Uniform"){
 
                 }
@@ -622,7 +638,7 @@
                 if(input == "Increasing"){
 
                 }
-            }
+            }*/
            
         }
 
