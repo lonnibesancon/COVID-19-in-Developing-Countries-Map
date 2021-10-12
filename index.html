@@ -151,6 +151,7 @@
         const encode_national_studies = false
 
 
+
         const age_specific_ifr = "Age-Specific IFR"
         const population_ifr = "Population IFR"
         const age_specific_prevalence = "Age-Specific Prevalence"
@@ -257,6 +258,25 @@
 
         var formatNumber = d3.format('.2f');
 
+        var map_style = "dark_matter"
+
+        let style_link,legend_color,text_color,stroke_color
+
+        if(map_style == "positron"){
+            style_link = "https://api.maptiler.com/maps/positron/style.json"
+            legend_color = "rgba(195,200,202,0.8)"
+            text_color = 'rgba(0,0,0,1)'
+        }
+
+        if(map_style == "dark_matter"){
+            style_link = "https://api.maptiler.com/maps/darkmatter/style.json"
+            legend_color = "rgba(0,0,0,0.8)"
+            text_color = 'rgba(255,255,255,1)'
+        }
+
+        style_link+="?key=rdYGkYtASUIQnpM222UW"
+        //style_link+="?key=vzWoiH8YygJqMjY0TcSt"
+
 
         var Tooltip = d3.select("#map")
                 .append("div")
@@ -331,8 +351,8 @@
             container: "map", // container id
             //style: "mapbox://styles/mapbox/light-v9", // stylesheet location
             //style: "mapbox://styles/lobenichou/cjto9zfpj00jq1fs7gajbuaas?fresh=true",
-            //style: "https://api.maptiler.com/maps/darkmatter/style.json?key=vzWoiH8YygJqMjY0TcSt ",
-            style: "https://api.maptiler.com/maps/positron/style.json?key=vzWoiH8YygJqMjY0TcSt ",
+            //style: "https://api.maptiler.com/maps/darkmatter/style.json?key=vzWoiH8YygJqMjY0TcSt",
+            style: style_link,
             zoom: 1.8, // starting zoom
             maxZoom: 10.2,
             });
@@ -372,15 +392,18 @@
         var font_size_header = (1.3*scale)+"em"
         var font_size_sub = (1.1*scale)+"em"
 
-        var background_color = "rgba(0,0,0,0.8)"
-        var text_color = 'rgba(255,255,255,1)'
+        var additional_height = 0 
+        if(encode_national_studies){
+            additional_height = 30
+        }
+
         var legendDiv = d3.select('#map').append('div')
             .attr('width', (scale*360)+'px')
-            .attr('height', (scale*230)+'px')
+            .attr('height', (scale*(200+additional_height))+'px')
             .style("z-index",110)
             .style("opacity",1)
             .attr("class","legend")
-            .style("background-color",background_color)
+            .style("background-color",legend_color)
             .style("position","absolute")
             .style("border", "solid")
             .style("border-width", "2px")
@@ -393,10 +416,10 @@
         //First we create the legend for the shapes
         legendSvg = legendDiv.append("svg")
             .attr('width', (scale*360)+'px')
-            .attr('height', (scale*230)+'px')
+            .attr('height', (scale*(200+additional_height))+'px')
             .style("z-index",110)
             .attr("class","legend")
-            .style("background-color",background_color)
+            .style("background-color",legend_color)
             .style("opacity",1)
             .style("border-width","2px")
             .style("border-color","white");
@@ -420,7 +443,7 @@
         legendSvg.selectAll(".legend_dots").data(data).enter().append("path")
             .attr("class", "legend_dots")
             .style("fill", function(d){
-                return(colorScale(1))
+                return(colorScale(20))
             })
             .attr("d", d3.symbol()
                 .size(scale*200)
@@ -454,7 +477,7 @@
             legendSvg.selectAll(".legend_dots_national").data(data).enter().append("path")
                 .attr("class", "legend_dots_national national")
                 .style("fill", function(d){
-                    return(colorScale(1))
+                    return(colorScale(20))
                 })
                 .attr("d", d3.symbol()
                     .size(scale*200)
@@ -607,11 +630,8 @@
 
         function updateMaxMinForColorScale(data, column_name){
             console.log("DATA")
-            console.dir(data)
             var max =d3.max(data, function(d) {  return +d[column_name]; });
             var min =d3.min(data, function(d) {  return +d[column_name];})
-            console.log("Max = ")
-            console.log(max)
             colorScale.domain([0,max]);
         }
 
