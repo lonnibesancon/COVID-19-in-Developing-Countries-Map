@@ -157,11 +157,13 @@
         const encode_national_studies = false
 
         var possible_focus = ["Seroprevalence","IFR"]
+        var possible_properties = ["mean","IFR_mean"] 
 
         var focus_elem = document.getElementById("encodeVariable")
         for(i in possible_focus) {focus_elem.add(new Option(possible_focus[i],possible_focus[i]));}
 
-        var variable_focus = possible_focus[1]
+        var variable_focus = possible_focus[0]
+
 
 
         const age_specific_ifr = "Age-Specific IFR"
@@ -209,13 +211,15 @@
         function changeEncodeVariable(){
             var value = focus_elem.options[focus_elem.selectedIndex].value;
             //Seroprevalence, column mean
-            if (value == possible_focus[0]){
+            variable_focus = value
+            if (variable_focus == possible_focus[0]){
 
             }
             else{
 
-            }  
-            updateLegend(value)
+            }
+            filterData()
+            updateLegend(variable_focus)
         }
 
         function filterData(){
@@ -249,6 +253,14 @@
                 if(include_increasing == false && elem.properties.AgeClassification == "Increasing"){
                     continue
                 }*/
+
+                //If we focus on Seroprevalece, no problem, but if we focus on IFR, some elements won't have a value, we should remove them
+                if(variable_focus == possible_focus[1]){
+                    console.dir(elem.properties)
+                    if(elem.properties.IFR_mean == ""){
+                        continue
+                    }
+                }
                 data_to_display.push(elem)
             }
             createDots(data_to_display)
@@ -615,8 +627,13 @@
                 return "dots"
             })
             .style("fill", function(d){
-                var color = colorScale(d.properties.mean);
-                return(color)
+                if(variable_focus == possible_focus[0]){
+                    return(colorScale(d.properties.mean));
+                }
+                else{
+                    return(colorScale(d.properties.IFR_mean*100))   //It's not a percentage in the data
+                }
+                
             })
             .attr("d", d3.symbol()
                 .size(200)
