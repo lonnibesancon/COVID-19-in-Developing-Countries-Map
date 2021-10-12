@@ -83,9 +83,13 @@
                     <select name="encodeVariable" id="encodeVariable" onchange="changeEncodeVariable()"> 
                     </select> 
             </div>
-            <div id="data_div">
-                <input type="date" id="minDateInput" name="minDateInput" onchange="changeMin()" value="2018-11-23"></td>
-                <input type="date" id="maxDateInput" name="maxDateInput" onchange="changeMax()" value="2020-11-23"></td>
+            <div id="date_div_start">
+                Assay Starts -- Min Date <input type="date" id="minDateInputStart" name="minDateInputStart" onchange="changeMinStart()" value="2018-11-23"></td>
+                Max Date <input type="date" id="maxDateInputStart" name="maxDateInputStart" onchange="changeMaxStart()" value="2020-11-23"></td>
+            </div>
+            <div id="date_div_end">
+                Assay Ends -- Min Date <input type="date" id="minDateInputEnd" name="minDateInputEnd" onchange="changeMinEnd()" value="2018-11-23"></td>
+                Max Date <input type="date" id="maxDateInputEnd" name="maxDateInputEnd" onchange="changeMaxEnd()" value="2020-11-23"></td>
             </div>
             <fieldset class="inline">
                 <legend>Data location (uncheck to exclude):</legend>
@@ -218,10 +222,26 @@
         }
 
 
-        function changeMin(){
-            let v = document.getElementById("minDateInput").value;
+        function changeMinStart(){
+            let v = document.getElementById("minDateInputStart").value;
             min_date_start = parseISODate(v);
-            //minDate = v ;
+            filterData();
+        }
+
+        function changeMinEnd(){
+            let v = document.getElementById("minDateInputEnd").value;
+            min_date_end = parseISODate(v);
+            filterData();
+        }
+
+        function changeMaxStart(){
+            let v = document.getElementById("maxDateInputStart").value;
+            max_date_start = parseISODate(v);
+            filterData();
+        }
+        function changeMaxEnd(){
+            let v = document.getElementById("maxDateInputEnd").value;
+            max_date_end = parseISODate(v);
             filterData();
         }
 
@@ -252,6 +272,9 @@
         //Returns false if the element is not between specified dates
         function filterByDate(elem){
             if( elem.properties.start_date < min_date_start || elem.properties.start_date > max_date_start){
+                return false
+            }
+            if( elem.properties.end_date < min_date_end || elem.properties.end_date > max_date_end){
                 return false
             }
             return true 
@@ -360,8 +383,10 @@
                 initialize_max_min_dates("end",date)
             }
 
-            document.getElementById("minDateInput").value = (toISOString(min_date_start).substr(0,10))
-            document.getElementById("maxDateInput").value = (toISOString(max_date_start).substr(0,10))
+            document.getElementById("minDateInputStart").value = (toISOString(min_date_start).substr(0,10))
+            document.getElementById("maxDateInputStart").value = (toISOString(max_date_start).substr(0,10))
+            document.getElementById("minDateInputEnd").value = (toISOString(min_date_end).substr(0,10))
+            document.getElementById("maxDateInputEnd").value = (toISOString(max_date_end).substr(0,10))
         }
 
 
@@ -382,6 +407,10 @@
               ':' + pad(date.getSeconds()) +
               dif + pad(tzo / 60) +
               ':' + pad(tzo % 60);
+        }
+
+        function toShortString(date){
+            return (date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate())
         }
 
 
@@ -464,8 +493,12 @@
                 location = (d.properties.location_label + " ["+d.properties.country+"]")
 
             }
+
+            let dates = toShortString(d.properties.start_date) + " -- " + toShortString(d.properties.end_date)
+
+
             Tooltip
-            .html("Location:<br>"+location + "<br><br>Type:<br>" + d.properties.study_info + "<br><br>Mean Seroprevalence:<br>" + d.properties.mean+"<br><br>Assay name:<br>"+d.properties.assay_name)
+            .html("Location:<br>"+location + "<br><br>Type:<br>" + d.properties.study_info + "<br><br>Mean Seroprevalence:<br>" + d.properties.mean+"<br><br>Assay name:<br>"+d.properties.assay_name + "<br><br>Dates:<br>" + dates)
             .style("left", tooltip_x)
             .style("top", tooltip_y)
         }
