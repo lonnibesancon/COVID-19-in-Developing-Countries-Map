@@ -82,6 +82,20 @@ def match_data(input1, input2, field, fields_to_add):
             print "Error finding a matching row"
             
 
+'''
+Function that saves the data we have found into a csv file
+@param1 input, the data to save
+@return none
+'''
+def save_data(input):
+    with open('map_data.csv', 'w') as csv_file:
+        fieldnames = list(input[0].keys())
+        writer = csv.DictWriter(csv_file,fieldnames=fieldnames)
+        writer.writeheader()
+        for row in input:
+            writer.writerow(row)
+
+
 
 
 fetch_study_info()
@@ -89,7 +103,7 @@ clean_study_index(study_index,["map_x","map_y"])
 fetch_study_total_seroprevalence()
 
 match_data(study_index,study_prevalence,'location_id',['mean'])
-print study_index
+save_data(study_index)
 
     
     
