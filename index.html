@@ -168,8 +168,10 @@
 
         var variable_focus = possible_focus[0]
 
-        var min_date = null
-        var max_date = null
+        var min_date_start = null
+        var max_date_start = null
+        var min_date_end = null 
+        var max_date_end = null 
 
 
 
@@ -215,6 +217,24 @@
             filterData()
         }
 
+
+        function changeMin(){
+            let v = document.getElementById("minDateInput").value;
+            min_date_start = parseISODate(v);
+            //minDate = v ;
+            filterData();
+        }
+
+
+        // Parse and validate a date in format yyyy-mm-dd
+        // Note that a date without a timezone is treated as LOCAL since
+        // the HTML spec is consistent with ISO 8601
+        function parseISODate(s){
+            var b = s.split(/\D/);
+            var d = new Date(b[0], --b[1], b[2]);
+            return d && d.getMonth() == b[1]? d : new Date(NaN);
+        }
+
         function changeEncodeVariable(){
             var value = focus_elem.options[focus_elem.selectedIndex].value;
             //Seroprevalence, column mean
@@ -227,6 +247,14 @@
             }
             filterData()
             updateLegend(variable_focus)
+        }
+
+        //Returns false if the element is not between specified dates
+        function filterByDate(elem){
+            if( elem.properties.start_date < min_date_start || elem.properties.start_date > max_date_start){
+                return false
+            }
+            return true 
         }
 
         function filterData(){
@@ -267,6 +295,10 @@
                         continue
                     }
                 }
+
+                if(filterByDate(elem) == false){
+                    continue 
+                }
                 data_to_display.push(elem)
             }
             createDots(data_to_display)
@@ -283,16 +315,73 @@
             return date
         }
 
+        function initialize_max_min_dates(type,date){
+            if(type=="start"){
+                if(min_date_start == null){
+                    min_date_start = date
+                }
+                if(max_date_start == null){
+                    max_date_start = date
+                }
+                if(date < min_date_start){
+                    min_date_start = date
+                }
+                if(date > max_date_start){
+                    max_date_start = date
+                }
+            }
+            else{
+                if(min_date_end == null){
+                    min_date_end = date
+                }
+                if(max_date_end == null){
+                    max_date_end = date
+                }
+                if(date < min_date_end){
+                    min_date_end = date
+                }
+                if(date > max_date_end){
+                    max_date_end = date
+                }
+            }
+        }
+
 
         function parseDates(data){
             console.dir(data)
             for (var i = 0 ; i < data.features.length ; i++){
                 let elem = data.features[i].properties
                 let date = create_date(elem.start_date)
-                console.dir(date)
-                
-                
+                elem.start_date = date
+                initialize_max_min_dates("start",date)
+
+                date = create_date(elem.end_date)
+                elem.end_date = date 
+                initialize_max_min_dates("end",date)
             }
+
+            document.getElementById("minDateInput").value = (toISOString(min_date_start).substr(0,10))
+            document.getElementById("maxDateInput").value = (toISOString(max_date_start).substr(0,10))
+        }
+
+
+        /* This function will be called instead of the function in the Date object that does not leave the time in local timezone.*/
+        function toISOString(date) {
+          var tzo = -date.getTimezoneOffset(),
+              dif = tzo >= 0 ? '+' : '-',
+              pad = function(num) {
+                  var norm = Math.floor(Math.abs(num));
+                  return (norm < 10 ? '0' : '') + norm;
+              };
+
+          return date.getFullYear() +
+              '-' + pad(date.getMonth() + 1) +
+              '-' + pad(date.getDate()) +
+              'T' + pad(date.getHours()) +
+              ':' + pad(date.getMinutes()) +
+              ':' + pad(date.getSeconds()) +
+              dif + pad(tzo / 60) +
+              ':' + pad(tzo % 60);
         }
 
 
