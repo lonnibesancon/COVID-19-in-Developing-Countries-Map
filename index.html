@@ -629,8 +629,8 @@
 
       function makeGeoJson(input_data){
         csv2geojson.csv2geojson(input_data, {
-            latfield: 'Latitude',
-            lonfield: 'Longitude',
+            latfield: 'latitude',
+            lonfield: 'longitude',
             delimiter: ','
         }, function(err, output_data) {
             if(err != null){
