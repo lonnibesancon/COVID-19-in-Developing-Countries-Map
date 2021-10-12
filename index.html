@@ -78,6 +78,23 @@
     </div>
     <div id="controls">
         <div id="inclusion">
+            <div id="data_to_show">
+                Visualize
+                    <select name="encodeVariable" id="encodeVariable" onchange="changeEncodeVariable()"> 
+                    </select> 
+            </div>
+            <fieldset class="inline">
+                <legend>Data location (uncheck to exclude):</legend>
+                <div>
+                  <input type="checkbox" id="national" name="national" checked onchange="changeNational()">
+                  <label for="national">National</label>
+                </div>
+                <div>
+                  <input type="checkbox" id="local" name="local" checked onchange="changeLocal()">
+                  <label for="local">Local (city or county)</label>
+                </div>
+            </fieldset>
+
             <fieldset class="inline">
                 <legend>Data Source (uncheck to exclude):</legend>
                 <div>
@@ -98,17 +115,6 @@
                 </div>
             </fieldset>
 
-            <fieldset class="inline">
-                <legend>Data location (uncheck to exclude):</legend>
-                <div>
-                  <input type="checkbox" id="national" name="national" checked onchange="changeNational()">
-                  <label for="national">National</label>
-                </div>
-                <div>
-                  <input type="checkbox" id="local" name="local" checked onchange="changeLocal()">
-                  <label for="local">Local (city or county)</label>
-                </div>
-            </fieldset>
             <!--
             <fieldset class="inline">
                 <legend>Prevalence distribution accross ages (uncheck to exclude):</legend>
@@ -150,6 +156,12 @@
 
         const encode_national_studies = false
 
+        var possible_focus = ["Seroprevalence","IFR"]
+
+        var focus_elem = document.getElementById("encodeVariable")
+        for(i in possible_focus) {focus_elem.add(new Option(possible_focus[i],possible_focus[i]));}
+
+        var variable_focus = possible_focus[1]
 
 
         const age_specific_ifr = "Age-Specific IFR"
@@ -192,6 +204,18 @@
         function changeIncreasing(){
             include_increasing = !include_increasing
             filterData()
+        }
+
+        function changeEncodeVariable(){
+            var value = focus_elem.options[focus_elem.selectedIndex].value;
+            //Seroprevalence, column mean
+            if (value == possible_focus[0]){
+
+            }
+            else{
+
+            }  
+            updateLegend(value)
         }
 
         function filterData(){
@@ -244,8 +268,7 @@
         var colorScale = d3.scaleLinear()
             .range([color1, color2]); //"rgba(103,0,13,0.8)"]);
 
-        var max_sero = 0;
-        var min_sero = 100
+        var max_value = 100
 
         var tooltipXOffset = 10 ;
         var tooltipYOffset = -50 ;
@@ -277,6 +300,11 @@
         style_link+="?key=rdYGkYtASUIQnpM222UW"
         //style_link+="?key=vzWoiH8YygJqMjY0TcSt"
 
+
+        function updateLegend(value_for_gradient){
+            var gradient_legend = document.getElementById('gradient_legend')
+            gradient_legend.textContent = value_for_gradient + " (in %)"
+        }
 
         var Tooltip = d3.select("#map")
                 .append("div")
@@ -532,6 +560,7 @@
         legendSvg.append("text")
             .attr("x",scale*(legend2_x_start))
             .attr("y",scale*50)
+            .attr("id","gradient_legend")
             .style('fill', '')
             .text("Prevalence (in %)")
             .attr("class","legend_text_sub legend_text")
@@ -632,7 +661,7 @@
             console.log("DATA")
             var max =d3.max(data, function(d) {  return +d[column_name]; });
             var min =d3.min(data, function(d) {  return +d[column_name];})
-            colorScale.domain([0,max]);
+            colorScale.domain([0,max_value]);
         }
 
         function getShape(input){

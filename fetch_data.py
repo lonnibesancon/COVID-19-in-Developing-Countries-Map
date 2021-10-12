@@ -3,6 +3,7 @@ import urllib2
 
 study_index = []
 study_prevalence = []
+study_ifr = []
 
 
 '''
@@ -37,6 +38,16 @@ def fetch_study_total_seroprevalence():
 
     #for row in cr:
     #    study_prevalence.append([row['location_id'],row['mean']])
+
+
+'''
+Function fetching necessary data from the fike population_ifr.csv
+'''
+def fetch_study_total_ifr():
+    global study_ifr
+    url = 'https://raw.githubusercontent.com/covid-ifr/assessing-burden/main/model_output/population_ifr.csv'
+    response = urllib2.urlopen(url)
+    study_ifr = list(csv.DictReader(response))
 
 '''
 Function to remove specific keys in a list of dict
@@ -78,8 +89,8 @@ def match_data(input1, input2, field, fields_to_add):
         if corresponding_row!= -1:
             for f in fields_to_add:
                 row[f] = corresponding_row[f]
-        else:
-            print "Error finding a matching row"
+        '''else:
+            print "Error finding a matching row for "+str(field_value)'''
             
 
 '''
@@ -99,10 +110,12 @@ def save_data(input):
 
 
 fetch_study_info()
-clean_study_index(study_index,["map_x","map_y"])
+clean_study_index(study_index,["map_x","map_y","pop_location_id"])
 fetch_study_total_seroprevalence()
+fetch_study_total_ifr()
 
 match_data(study_index,study_prevalence,'location_id',['mean'])
+match_data(study_index,study_ifr,'location_id',['IFR_mean'])
 save_data(study_index)
 
     
