@@ -148,6 +148,8 @@
         var include_decreasing = true ;
         var include_increasing = true ;
 
+        const encode_national_studies = false
+
 
         const age_specific_ifr = "Age-Specific IFR"
         const population_ifr = "Population IFR"
@@ -330,7 +332,7 @@
             //style: "mapbox://styles/mapbox/light-v9", // stylesheet location
             //style: "mapbox://styles/lobenichou/cjto9zfpj00jq1fs7gajbuaas?fresh=true",
             style: "https://api.maptiler.com/maps/darkmatter/style.json?key=vzWoiH8YygJqMjY0TcSt ",
-            
+            style: "https://api.maptiler.com/maps/positron/style.json?key=rdYGkYtASUIQnpM222UWkey=vzWoiH8YygJqMjY0TcSt "
 
 
             zoom: 1.8, // starting zoom
@@ -447,37 +449,40 @@
             .style("fill",text_color)
             .style("font-size",font_size);
 
-        //Now we create the legend for the national VS non-national studies
-        //We add it at the bottom as an extra line to show how national studies are highlighted
-        let y_position = scale*(4*30) + 1/scale*60
-        legendSvg.selectAll(".legend_dots_national").data(data).enter().append("path")
-            .attr("class", "legend_dots_national national")
-            .style("fill", function(d){
-                return(colorScale(1))
-            })
-            .attr("d", d3.symbol()
-                .size(scale*200)
-                .type(function(d) { 
-                    return(getShape(d))
+        if(encode_national_studies){
+            //Now we create the legend for the national VS non-national studies
+            //We add it at the bottom as an extra line to show how national studies are highlighted
+            let y_position = scale*(4*30) + 1/scale*60
+            legendSvg.selectAll(".legend_dots_national").data(data).enter().append("path")
+                .attr("class", "legend_dots_national national")
+                .style("fill", function(d){
+                    return(colorScale(1))
                 })
+                .attr("d", d3.symbol()
+                    .size(scale*200)
+                    .type(function(d) { 
+                        return(getShape(d))
+                    })
 
-            )
-            .attr("transform",function(d,i){
-                let x = scale*(10 + (i*25) + x_offset)
-                let y = scale*(y_position+y_offset)
-                return ("translate("+x+","+y+")")
-            });
+                )
+                .attr("transform",function(d,i){
+                    let x = scale*(10 + (i*25) + x_offset)
+                    let y = scale*(y_position+y_offset)
+                    return ("translate("+x+","+y+")")
+                });
 
-        legendSvg.append("text")
-            .attr("x", scale*(110+x_offset))
-            .attr("y", function(){
-                return (scale*(y_position + y_offset_to_middle + y_offset))
-            })
-            .text("National Studies")
-            .attr("class","legend_text")
-            .style("fill",text_color)
-            .style("font-size",font_size);
+            legendSvg.append("text")
+                .attr("x", scale*(110+x_offset))
+                .attr("y", function(){
+                    return (scale*(y_position + y_offset_to_middle + y_offset))
+                })
+                .text("National Studies")
+                .attr("class","legend_text")
+                .style("fill",text_color)
+                .style("font-size",font_size);
 
+        }
+        
         legend2_x_start = scale*300
 
         //Now we want to make the continuous scale legend
@@ -553,7 +558,9 @@
             //.attr("class","dots")
             .attr("class", function(d){
                 if(d.properties.location_label == "National Study"){
-                    return "dots national"
+                    if(encode_national_studies){
+                        return "dots national"
+                    } 
                 }
                 return "dots"
             })
