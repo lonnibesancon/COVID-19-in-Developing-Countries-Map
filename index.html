@@ -256,7 +256,6 @@
 
                 //If we focus on Seroprevalece, no problem, but if we focus on IFR, some elements won't have a value, we should remove them
                 if(variable_focus == possible_focus[1]){
-                    console.dir(elem.properties)
                     if(elem.properties.IFR_mean == ""){
                         continue
                     }
@@ -675,7 +674,6 @@
 
 
         function updateMaxMinForColorScale(data, column_name){
-            console.log("DATA")
             var max =d3.max(data, function(d) {  return +d[column_name]; });
             var min =d3.min(data, function(d) {  return +d[column_name];})
             colorScale.domain([0,max_value]);
@@ -683,8 +681,6 @@
 
         function getShape(input){
             if(display_study_type){
-                console.log("Input=")
-                console.log(input)
                 if (input == age_specific_ifr){
                     return d3.symbolCircle;
                 }
