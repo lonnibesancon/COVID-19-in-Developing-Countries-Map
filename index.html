@@ -83,6 +83,10 @@
                     <select name="encodeVariable" id="encodeVariable" onchange="changeEncodeVariable()"> 
                     </select> 
             </div>
+            <div id="data_div">
+                <input type="date" id="minDateInput" name="minDateInput" onchange="changeMin()" value="2018-11-23"></td>
+                <input type="date" id="maxDateInput" name="maxDateInput" onchange="changeMax()" value="2020-11-23"></td>
+            </div>
             <fieldset class="inline">
                 <legend>Data location (uncheck to exclude):</legend>
                 <div>
@@ -163,6 +167,9 @@
         for(i in possible_focus) {focus_elem.add(new Option(possible_focus[i],possible_focus[i]));}
 
         var variable_focus = possible_focus[0]
+
+        var min_date = null
+        var max_date = null
 
 
 
@@ -266,6 +273,27 @@
 
         }
 
+        function create_date(input_string){
+            input_string = input_string.split("/")
+            console.dir(input_string)
+            let day = +input_string[1]
+            let month = +input_string[0]
+            let year = +input_string[2]
+            let date = new Date(year, month, day)
+            return date
+        }
+
+
+        function parseDates(data){
+            console.dir(data)
+            for (var i = 0 ; i < data.features.length ; i++){
+                let elem = data.features[i].properties
+                let date = create_date(elem.start_date)
+                console.dir(date)
+                
+                
+            }
+        }
 
 
         /****** D3 bits*****/
@@ -382,6 +410,7 @@
                 createLegend()
                 createMap()
                 makeGeoJson(data)
+                parseDates(initial_data)
                 return ;
             })
 
