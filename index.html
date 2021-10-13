@@ -627,7 +627,7 @@
             .style("text-anchor", "end")
             .text("Calories");*/
 
-        svg.selectAll("dot")
+        forest_plot.selectAll("dot")
             .data(data_to_display)
         .enter().append("circle")
             .attr("r", 5)
