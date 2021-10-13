@@ -596,12 +596,12 @@
         //var forest_plot = document.getElementById("forest_plot")
         var forest_plot = d3.select("#forest_plot")
         
-        var margin = 200 
+        var margin = 100 
 
         console.log("Printing forest_plot")
         console.dir(forest_plot)
-        var height = (forest_plot.attr("height") - margin);
-        var width = (forest_plot.attr("width") - margin)
+        var height = (forest_plot.attr("height") - 2*margin);
+        var width = (forest_plot.attr("width") - 2*margin)
 
         console.log("height")
         console.dir(height)         
@@ -630,7 +630,7 @@
         //Add the X-axis
         forest_plot.append("g")
             .attr("class","axis")
-            .attr("transform", "translate(0," + height + ")")
+            .attr("transform", "translate("+margin"," + height + ")")
             .call(d3.axisBottom(forest_xScale));
 
         // Add the Y Axis
