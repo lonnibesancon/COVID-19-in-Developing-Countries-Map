@@ -70,12 +70,18 @@ def fetch_study_link():
 
 '''
 Function fetching necessary data from the file population_ifr.csv
+Does some extra processing of the IFR values (CIs and means) to make it a percentage
 '''
 def fetch_study_total_ifr():
     global study_ifr
     url = 'https://raw.githubusercontent.com/covid-ifr/assessing-burden/main/model_output/population_ifr.csv'
     response = urllib2.urlopen(url)
     study_ifr = list(csv.DictReader(response))
+
+    for row in study_ifr:
+        row["IFR_mean"] = round((float(row["IFR_mean"])*100),9)
+        row["IFR_p025"] = round((float(row["IFR_p025"])*100),9)
+        row["IFR_p975"] = round((float(row["IFR_p975"])*100),9)
 
 '''
 Function to remove specific keys in a list of dict
