@@ -693,8 +693,8 @@
             //.attr("cx", function(d) { return forest_xScale( parseInt(d.properties.location_id)); })
             .attr("cx", function(d,i) { return 4*i; })
             .attr("cy", function(d) { return forest_yScale(d.properties.mean); })
-            .on("mouseover", function(d,i){handleMouseOver(d,i)})
-            .on("mouseout", function(d,i){handleMouseOut(d,i)});
+            .on("mouseover", function(d,i){handleMouseOver(d,i,this)})
+            .on("mouseout", function(d,i){handleMouseOut(d,i,this)});
 
         render();
 
@@ -708,17 +708,17 @@
 
     }
 
-    function handleMouseOver(datum,index){
+    function handleMouseOver(datum,index,graph_object){
         // Use D3 to select element, change color and size
-        d3.select(this).classed('hovered', true);
+        d3.select(graph_object).classed('hovered', true);
         console.dir(this)
         console.dir(datum)
         console.log(index)
         
     }
 
-    function handleMouseOut(datum,index){
-        d3.select(this).classed('hovered', false);
+    function handleMouseOut(datum,index,graph_object){
+        d3.select(graph_object).classed('hovered', false);
     }
 
     function createLegend(){
