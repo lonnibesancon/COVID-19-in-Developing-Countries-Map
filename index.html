@@ -601,7 +601,7 @@
                .attr("transform", "translate(" + 100 + "," + 100 + ")");
 
         forest_xScale.domain(initial_data.map(function(d) { return d.properties.location_id; }));
-        forest_yScale.domain([0, d3.max(data, function(d) { return d.value; })]);
+        forest_yScale.domain([0, 100]);
     }
 
     function createLegend(){
