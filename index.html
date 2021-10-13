@@ -614,7 +614,7 @@
 
         console.log("initial data")
         console.dir(initial_data)
-        forest_xScale.domain(d3.extent(initial_data, function(d) { return d.properties.location_id; }));
+        forest_xScale.domain(d3.extent(initial_data, function(d) { console.log("Inside print"); console.dir(d) ; return (d.location_id) }));
         forest_yScale.domain([0, 100]);
 
         /*var xAxis = d3.svg.axis().scale(forest_xScale).orient("bottom");
