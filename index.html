@@ -600,7 +600,7 @@
 
         console.log("Printing forest_plot")
         console.dir(forest_plot)
-        var height = forest_plot.attr("height") - margin;
+        var height = forest_plot.style("height") - margin;
         var width = forest_plot.style("width") - margin         
 
         forest_xScale = d3.scaleBand().range([0, width]).padding(0.4)
