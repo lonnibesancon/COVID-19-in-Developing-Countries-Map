@@ -627,6 +627,13 @@
             .style("text-anchor", "end")
             .text("Calories");*/
 
+        svg.selectAll("dot")
+            .data(data_to_display)
+        .enter().append("circle")
+            .attr("r", 5)
+            .attr("cx", function(d) { return forest_xScale(d.properties.location_id); })
+            .attr("cy", function(d) { return forest_yScale(d.properties.mean); });
+
         //Add the X-axis
         forest_plot.append("g")
             .attr("class","axis")
