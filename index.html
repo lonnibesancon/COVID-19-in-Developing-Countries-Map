@@ -593,16 +593,16 @@
 
 
     function createForestPlot(){
-        var svg = document.getElementById("forest_plot")
+        var forest_plot = document.getElementById("forest_plot")
         console.log("COUCOU")
         console.dir(svg)
         var margin = 200 
-        var width = svg.attr("width") - margin 
-        var height = svg.attr("height") - margin;
+        var width = forest_plot.attr("width") - margin 
+        var height = forest_plot.attr("height") - margin;
         forest_xScale = d3.scaleBand().range ([0, width]).padding(0.4)
         forest_yScale = d3.scaleLinear().range ([height, 0]);
 
-        var g = svg.append("g")
+        var g = forest_plot.append("g")
                .attr("transform", "translate(" + 100 + "," + 100 + ")");
 
         forest_xScale.domain(initial_data.map(function(d) { return d.properties.location_id; }));
