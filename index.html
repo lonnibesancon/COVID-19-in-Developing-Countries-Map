@@ -679,6 +679,7 @@
     }
 
     function createForest(input_data){
+        console.dir(input_data)
         console.log("forest_plot")
         console.dir(forest_plot)
         var forest = forest_plot.selectAll(".forest_dot")
@@ -696,7 +697,7 @@
 
             )
             .attr("transform", function(d,i) {
-                let x = 4*i
+                let x = 6*i
                 let y = forest_yScale(d.properties.mean)
                 let coordinates = ""+x+","+y
                 return "translate("+coordinates+")"
@@ -934,6 +935,7 @@
     }
 
     function createDots(input_data) {
+        console.dir(input_data)
         //d3.selectAll(".d3_layer").remove(); //For when we update the map
         var svg = d3.select(".d3_layer")
         svg.selectAll(".dots").remove(); //For when we update the map
