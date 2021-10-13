@@ -606,8 +606,8 @@
         var height = (forest_plot.attr("height") - 2*margin);
         var width = (forest_plot.attr("width") - 2*margin)
 
-        forest_plot.style("marginLeft",margin)
-        forest_plot.style("marginRight",margin)
+        forest_plot.style("marginLeft",margin+"px")
+        forest_plot.style("marginRight",margin+"px")
 
         console.log("height")
         console.dir(height)         
@@ -615,10 +615,10 @@
         forest_xScale = d3.scaleBand().range([0, width]).padding(0.4)
         forest_yScale = d3.scaleLinear().range([height, 0]);
 
-        console.log("initial data")
-        console.dir(initial_data)
-        forest_xScale.domain(d3.extent(initial_data, function(d) { console.log("Inside print"); console.dir(d) ; return (d.location_id) }));
+        forest_xScale.domain(d3.extent(initial_data, function(d) { return (d.location_id) }));
         forest_yScale.domain([0, 100]);
+        console.log("forest_xScale")
+        console.dir(forest_xScale)
 
         /*var xAxis = d3.svg.axis().scale(forest_xScale).orient("bottom");
 
