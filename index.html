@@ -601,6 +601,8 @@
         
         var margin = 100 
 
+        var radius = 3
+
         console.log("Printing forest_plot")
         console.dir(forest_plot)
         var height = (forest_plot.attr("height") - 2*margin);
@@ -683,8 +685,9 @@
             .append("circle")
             //.attr("class","dots")
             .attr("class", "forest_dot")
-            .attr("r", 5)
-            .attr("cx", function(d) { return forest_xScale( parseInt(d.properties.location_id)); })
+            .attr("r", radius)
+            //.attr("cx", function(d) { return forest_xScale( parseInt(d.properties.location_id)); })
+            .attr("cx", function(d,i) { return (radius+1)*i; })
             .attr("cy", function(d) { return forest_yScale(d.properties.mean); });
 
         render();
