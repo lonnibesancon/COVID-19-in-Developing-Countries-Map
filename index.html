@@ -331,6 +331,7 @@
                 data_to_display.push(elem)
             }
             createDots(data_to_display)
+            createForest(data_to_display)
 
         }
 
@@ -463,6 +464,8 @@
         var forest_xScale 
         var forest_yScale 
 
+        var forest_plot
+
 
 
         function updateLegend(value_for_gradient){
@@ -594,7 +597,7 @@
 
     function createForestPlot(){
         //var forest_plot = document.getElementById("forest_plot")
-        var forest_plot = d3.select("#forest_plot")
+        forest_plot = d3.select("#forest_plot")
         
         var margin = 100 
 
@@ -627,13 +630,6 @@
             .style("text-anchor", "end")
             .text("Calories");*/
 
-        forest_plot.selectAll("dot")
-            .data(data_to_display)
-        .enter().append("circle")
-            .attr("r", 5)
-            .attr("cx", function(d) { return forest_xScale(d.properties.location_id); })
-            .attr("cy", function(d) { return forest_yScale(d.properties.mean); });
-
         //Add the X-axis
         forest_plot.append("g")
             .attr("class","axis")
@@ -647,6 +643,31 @@
             .attr("transform", "translate("+margin+",0)")
             .call(d3.axisLeft(forest_yScale));
 
+    }
+
+    function createForest(input_data){
+
+        var forest = svg.selectAll(".forest_dot")
+            .data(input_data);
+
+        forest.exit().remove()
+        forest.enter()
+            .append("circle")
+            //.attr("class","dots")
+            .attr("class", "forest_dot")
+            .attr("r", 5)
+            .attr("cx", function(d) { return forest_xScale(d.properties.location_id); })
+            .attr("cy", function(d) { return forest_yScale(d.properties.mean); });
+
+        render();
+
+
+        /*forest_plot.selectAll("dot")
+            .data(data_to_display)
+        .enter().append("circle")
+            .attr("r", 5)
+            .attr("cx", function(d) { return forest_xScale(d.properties.location_id); })
+            .attr("cy", function(d) { return forest_yScale(d.properties.mean); });*/
 
     }
 
@@ -954,6 +975,7 @@
             else{
                 initial_data = output_data
                 createDots(output_data.features)
+                createForest(output_data.features)
             }
             
 
