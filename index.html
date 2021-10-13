@@ -693,8 +693,8 @@
             //.attr("cx", function(d) { return forest_xScale( parseInt(d.properties.location_id)); })
             .attr("cx", function(d,i) { return 4*i; })
             .attr("cy", function(d) { return forest_yScale(d.properties.mean); })
-            .on("mouseover", handleMouseOver)
-            .on("mouseout", handleMouseOut);
+            .on("mouseover", handleMouseOver(d,i))
+            .on("mouseout", handleMouseOut(d,i));
 
         render();
 
@@ -708,14 +708,16 @@
 
     }
 
-    function handleMouseOver(){
+    function handleMouseOver(datum,index){
         // Use D3 to select element, change color and size
         d3.select(this).classed('hovered', true);
         console.dir(this)
+        console.dir(datum)
+        console.log(index)
         
     }
 
-    function handleMouseOut(){
+    function handleMouseOut(datum,index){
         d3.select(this).classed('hovered', false);
     }
 
