@@ -597,7 +597,7 @@
         var forest_plot = d3.select("forest_plot")
         
         var margin = 200 
-        var width = forest_plot.attr("width") - margin 
+        var width = forest_plot.style("width") - margin 
         var height = forest_plot.attr("height") - margin;
 
         forest_xScale = d3.scaleBand().range([0, width]).padding(0.4)
