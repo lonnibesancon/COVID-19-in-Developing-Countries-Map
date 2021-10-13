@@ -710,19 +710,9 @@
 
     function handleMouseOver(){
         // Use D3 to select element, change color and size
-        d3.select(this).attr({
-            class: "hovered",
-        });
-
-        // Specify where to put label of text
-        svg.append("text").attr({
-           id: "t" + d.x + "-" + d.y + "-" + i,  // Create an id for text so we can select it later for removing on mouseout
-            x: function() { return xScale(d.x) - 30; },
-            y: function() { return yScale(d.y) - 15; }
-        })
-        .text(function() {
-          return [d.x, d.y];  // Value of the text
-        });
+        d3.select(this).attr("class", "hovered");
+        console.dir(this)
+        
     }
 
     function handleMouseOut(){
