@@ -686,7 +686,15 @@
 
         forest.exit().remove()
         forest.enter()
-            .append("circle")
+            //.append("circle")
+            .append("path")
+            .attr("d", d3.symbol()
+                .size(80)
+                .type(function(d) { 
+                    return(getShape(d.properties.study_info))
+                })
+
+            )
             //.attr("class","dots")
             .attr("class", "forest_dot")
             .attr("r", 3)
@@ -722,8 +730,6 @@
         id_to_select = "#d_"+index
         selection = d3.select(id_to_select)
         selection.classed('hovered', true)
-        console.dir(datum)
-        console.log(index)
         
     }
 
