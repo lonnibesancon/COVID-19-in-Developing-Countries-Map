@@ -729,10 +729,14 @@
 
     function handleMouseOut(datum,index,graph_object){
         let id_to_select = "#f_"+index
-        d3.select(id_to_select).classed('hovered', true)
+        let selection = d3.select(id_to_select)
+        selection.classed('hovered', false)
+        console.log("Selection")
+        console.dir(selection)
         //d3.select(graph_object).classed('hovered', true);
         id_to_select = "#d_"+index
-        //d3.select(graph_object).classed('hovered', false);
+        selection = d3.select(id_to_select)
+        selection.classed('hovered', false)
     }
 
     function createLegend(){
