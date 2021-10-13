@@ -616,6 +616,8 @@
         forest_yScale = d3.scaleLinear().range([height, 0]);
 
         //forest_xScale.domain(d3.extent(initial_data, function(d) { return (d.location_id) }));
+        console.log("initial_data")
+        console.dir(initial_data)
         forest_xScale.domain([d3.min(initial_data, function(d) { return d.location_id; }), d3.max(initial_data, function(d) { return d.location_id; })])
         forest_yScale.domain([0, 100]);
         console.log("forest_xScale")
