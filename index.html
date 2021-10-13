@@ -685,6 +685,8 @@
         var forest = forest_plot.selectAll(".forest_dot")
             .data(input_data);
 
+        console.log("FOREST")
+        console.dir(forest)
         forest.exit().remove()
         forest.enter()
             //.append("circle")
