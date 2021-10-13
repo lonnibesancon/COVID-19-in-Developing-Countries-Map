@@ -48,25 +48,25 @@ We thus need to find the location of all links for each study (if available)
 '''
 def fetch_study_link():
     global study_link
-    url = 'included_study_info.csv'
-    with open(url) as csvfile:
-        reader = csv.reader(csvfile, delimiter = ',')
-        for row in reader:
-            location_id = row[0]
-            source = row[4]
-            link_one = ''
-            link_two = ''
-            for i in range(5, 11):
-                col = row[i]
-                #print 'col = '+str(col)
-                if link_one == '' or link_two =='':
-                    if 'http' in col:
-                        if link_one == '':
-                            link_one = col
-                        elif link_two == '':
-                            link_two = col
-            dict_elem = {'location_id':location_id,'source':source,'link_one':link_one,'link_two':link_two}
-            study_link.append(dict_elem)
+    url = 'https://raw.githubusercontent.com/covid-ifr/assessing-burden/main/appendix_material/included_study_info.csv'
+    response = urllib2.urlopen(url)
+    reader = csv.reader(response, delimiter = ',')
+    for row in reader:
+        location_id = row[0]
+        source = row[4]
+        link_one = ''
+        link_two = ''
+        for i in range(5, 11):
+            col = row[i]
+            #print 'col = '+str(col)
+            if link_one == '' or link_two =='':
+                if 'http' in col:
+                    if link_one == '':
+                        link_one = col
+                    elif link_two == '':
+                        link_two = col
+        dict_elem = {'location_id':location_id,'source':source,'link_one':link_one,'link_two':link_two}
+        study_link.append(dict_elem)
 
 '''
 Function fetching necessary data from the file population_ifr.csv
