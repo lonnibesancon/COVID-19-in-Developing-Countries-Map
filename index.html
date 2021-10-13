@@ -713,13 +713,13 @@
 
     function handleMouseOver(datum,index,graph_object){
         // Use D3 to select element, change color and size
-        let id_to_select = "f_"+index
+        let id_to_select = "#f_"+index
         let selection = d3.select(id_to_select)
         selection.classed('hovered', true)
         console.log("Selection")
         console.dir(selection)
         //d3.select(graph_object).classed('hovered', true);
-        id_to_select = "d_"+index
+        id_to_select = "#d_"+index
         selection = d3.select(id_to_select)
         selection.classed('hovered', true)
         console.dir(datum)
@@ -728,10 +728,10 @@
     }
 
     function handleMouseOut(datum,index,graph_object){
-        let id_to_select = "f_"+index
+        let id_to_select = "#f_"+index
         d3.select(id_to_select).classed('hovered', true)
         //d3.select(graph_object).classed('hovered', true);
-        id_to_select = "d_"+index
+        id_to_select = "#d_"+index
         //d3.select(graph_object).classed('hovered', false);
     }
 
