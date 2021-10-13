@@ -687,7 +687,7 @@
             .attr("class", "forest_dot")
             .attr("r", radius)
             //.attr("cx", function(d) { return forest_xScale( parseInt(d.properties.location_id)); })
-            .attr("cx", function(d,i) { return (radius+1)*i; })
+            .attr("cx", function(d,i) { return 4*i; })
             .attr("cy", function(d) { return forest_yScale(d.properties.mean); });
 
         render();
