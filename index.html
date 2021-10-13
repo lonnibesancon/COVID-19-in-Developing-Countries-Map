@@ -623,11 +623,13 @@
 
         //Add the X-axis
         forest_plot.append("g")
+            .attr("class","axis")
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(forest_xScale));
 
         // Add the Y Axis
         forest_plot.append("g")
+            .attr("class","axis")
             .call(d3.axisLeft(forest_yScale));
 
 
