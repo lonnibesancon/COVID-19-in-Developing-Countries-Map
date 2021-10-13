@@ -370,7 +370,6 @@
 
 
         function parseDates(data){
-            console.dir(data)
             for (var i = 0 ; i < data.features.length ; i++){
                 let elem = data.features[i].properties
                 let date = create_date(elem.start_date)
@@ -508,7 +507,6 @@
                 ifr_info = ""+d.properties.IFR_mean+ " ["+d.properties.IFR_p025+" ; "+d.properties.IFR_p975+" ]"
             }
             
-            console.dir(d.properties)
 
             Tooltip
             .html("Location:<br>"+location + "<br><br>Type:<br>" + d.properties.study_info + "<br><br>Seroprevalence: " + seroprevalence_info+ "<br>IFR: "+ifr_info+"<br><br>Assay name:<br>"+d.properties.assay_name + "<br><br>Dates:<br>" + dates + "<br><br>Source:<br>"+ d.properties.source + links)
@@ -540,8 +538,6 @@
         d3.csv("./map_data.csv")
             .then(function(data){
                 initial_data = JSON.parse(JSON.stringify(data))
-                console.log("DATA")
-                console.dir(data)
                 //initial_data = data
                 updateMaxMinForColorScale(data,"mean")
                 createLegend()
