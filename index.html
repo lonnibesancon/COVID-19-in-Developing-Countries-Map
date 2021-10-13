@@ -74,8 +74,8 @@
     }
 
     .hovered{
-        stroke: black;
-        stroke-width: 1px;
+        stroke: pink;
+        stroke-width: 2px;
     }
 </style>
 </head>
@@ -710,13 +710,13 @@
 
     function handleMouseOver(){
         // Use D3 to select element, change color and size
-        d3.select(this).attr("class", "hovered");
+        d3.select(this).classed('hovered', true);
         console.dir(this)
         
     }
 
     function handleMouseOut(){
-
+        d3.select(this).classed('hovered', false);
     }
 
     function createLegend(){
