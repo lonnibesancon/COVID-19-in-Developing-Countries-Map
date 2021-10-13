@@ -599,6 +599,9 @@
 
         var g = svg.append("g")
                .attr("transform", "translate(" + 100 + "," + 100 + ")");
+
+        forest_xScale.domain(initial_data.map(function(d) { return d.properties.location_id; }));
+        forest_yScale.domain([0, d3.max(data, function(d) { return d.value; })]);
     }
 
     function createLegend(){
