@@ -72,6 +72,11 @@
     #forest_plot_div{
         position: absolute;
     }
+
+    .hovered{
+        stroke: black;
+        stroke-width: 1px;
+    }
 </style>
 </head>
   <body>
@@ -687,7 +692,9 @@
             .attr("r", 3)
             //.attr("cx", function(d) { return forest_xScale( parseInt(d.properties.location_id)); })
             .attr("cx", function(d,i) { return 4*i; })
-            .attr("cy", function(d) { return forest_yScale(d.properties.mean); });
+            .attr("cy", function(d) { return forest_yScale(d.properties.mean); })
+            .on("mouseover", handleMouseOver)
+            .on("mouseout", handleMouseOut);
 
         render();
 
@@ -698,6 +705,27 @@
             .attr("r", 5)
             .attr("cx", function(d) { return forest_xScale(d.properties.location_id); })
             .attr("cy", function(d) { return forest_yScale(d.properties.mean); });*/
+
+    }
+
+    function handleMouseOver(){
+        // Use D3 to select element, change color and size
+        d3.select(this).attr({
+            class: "hovered",
+        });
+
+        // Specify where to put label of text
+        svg.append("text").attr({
+           id: "t" + d.x + "-" + d.y + "-" + i,  // Create an id for text so we can select it later for removing on mouseout
+            x: function() { return xScale(d.x) - 30; },
+            y: function() { return yScale(d.y) - 15; }
+        })
+        .text(function() {
+          return [d.x, d.y];  // Value of the text
+        });
+    }
+
+    function handleMouseOut(){
 
     }
 
