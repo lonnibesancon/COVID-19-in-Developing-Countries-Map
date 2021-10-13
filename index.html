@@ -620,6 +620,20 @@
         console.log("forest_xScale")
         console.dir(forest_xScale)
 
+        let location_id = initial_data[0].location_id
+        let test = forest_xScale(location_id)
+        console.log("Location_id = "+location_id" Test = "+test)
+        location_id = initial_data[1].location_id
+        test = forest_xScale(location_id)
+        console.log("Location_id = "+location_id" Test = "+test)
+        location_id = initial_data[10].location_id
+        test = forest_xScale(location_id)
+        console.log("Location_id = "+location_id" Test = "+test)
+        location_id = initial_data[11].location_id
+        test = forest_xScale(location_id)
+        console.log("Location_id = "+location_id" Test = "+test)
+
+
         /*var xAxis = d3.svg.axis().scale(forest_xScale).orient("bottom");
 
          x-axis
