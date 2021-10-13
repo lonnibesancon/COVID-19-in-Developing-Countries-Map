@@ -4,6 +4,7 @@ import urllib2
 study_index = []
 study_prevalence = []
 study_ifr = []
+study_link = []
 
 
 '''
@@ -41,7 +42,34 @@ def fetch_study_total_seroprevalence():
 
 
 '''
-Function fetching necessary data from the fike population_ifr.csv
+Function fetching the studies' links
+This function needs to do some extra parsing. The links to the studies are not always in the same column.
+We thus need to find the location of all links for each study (if available)
+'''
+def fetch_study_link():
+    global study_link
+    url = 'included_study_info.csv'
+    with open(url) as csvfile:
+        reader = csv.reader(csvfile, delimiter = ',')
+        for row in reader:
+            location_id = row[0]
+            source = row[4]
+            link_one = ''
+            link_two = ''
+            for i in range(5, 11):
+                col = row[i]
+                #print 'col = '+str(col)
+                if link_one == '' or link_two =='':
+                    if 'http' in col:
+                        if link_one == '':
+                            link_one = col
+                        elif link_two == '':
+                            link_two = col
+            dict_elem = {'location_id':location_id,'source':source,'link_one':link_one,'link_two':link_two}
+            study_link.append(dict_elem)
+
+'''
+Function fetching necessary data from the file population_ifr.csv
 '''
 def fetch_study_total_ifr():
     global study_ifr
@@ -113,9 +141,11 @@ fetch_study_info()
 clean_study_index(study_index,["map_x","map_y","pop_location_id"])
 fetch_study_total_seroprevalence()
 fetch_study_total_ifr()
+fetch_study_link()
 
 match_data(study_index,study_prevalence,'location_id',['mean'])
 match_data(study_index,study_ifr,'location_id',['IFR_mean'])
+match_data(study_index,study_link,'location_id',['source','link_one','link_two'])
 save_data(study_index)
 
     
