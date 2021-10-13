@@ -647,7 +647,7 @@
 
     function createForest(input_data){
 
-        var forest = svg.selectAll(".forest_dot")
+        var forest = forest_plot.selectAll(".forest_dot")
             .data(input_data);
 
         forest.exit().remove()
