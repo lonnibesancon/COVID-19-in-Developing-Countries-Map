@@ -513,7 +513,7 @@
             console.log(links)
 
             Tooltip
-            .html("Location:<br>"+location + "<br><br>Type:<br>" + d.properties.study_info + "<br><br>Mean Seroprevalence:<br>" + d.properties.mean+"<br><br>Assay name:<br>"+d.properties.assay_name + "<br><br>Dates:<br>" + dates + "<br><br>Source:<br>"+ d.properties.source + links)
+            .html("Location:<br>"+location + "<br><br>Type:<br>" + d.properties.study_info + "<br><br>Seroprevalence: " + seroprevalence_info+ "<br>IFR: "+ifr_info+"<br><br>Assay name:<br>"+d.properties.assay_name + "<br><br>Dates:<br>" + dates + "<br><br>Source:<br>"+ d.properties.source + links)
             .style("left", tooltip_x)
             .style("top", tooltip_y)
         }
