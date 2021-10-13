@@ -630,7 +630,8 @@
         //Add the X-axis
         forest_plot.append("g")
             .attr("class","axis")
-            .attr("transform", "translate("+margin"," + height + ")")
+            //.attr("transform", "translate(0," + height + ")")
+            .attr("transform", "translate("+margin+","+ height + ")")
             .call(d3.axisBottom(forest_xScale));
 
         // Add the Y Axis
