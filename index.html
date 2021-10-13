@@ -502,6 +502,13 @@
             if(d.properties.link_two != ''){
                 links += "; <a href='"+d.properties.link_two+"'>Link2 </a>"
             }
+
+            let seroprevalence_info = ""+d.properties.mean+ " ["+d.properties.p025+" ; "+d.properties.p975+" ]"
+            let ifr_info = "NA"
+            if(d.properties.IFR_mean != ""){
+                ifr_info = ""+d.properties.IFR_mean+ " ["+d.properties.IFR_p025+" ; "+d.properties.IFR_p975+" ]"
+            }
+            
             console.log("LINKS")
             console.log(links)
 
