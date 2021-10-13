@@ -143,6 +143,7 @@
         </div>
     </div>
     <div id="map"></div>
+    <svg width="600" height="500", id="forest_plot"></svg>
     <script>
 
 
@@ -454,6 +455,9 @@
 
         style_link+="?key=vzWoiH8YygJqMjY0TcSt "
 
+        var forest_xScale 
+        var forest_yScale 
+
 
 
         function updateLegend(value_for_gradient){
@@ -580,6 +584,16 @@
                 .attr("class","d3_layer")
                 .on("click",mouseClickMap);
         }
+
+
+    function create_forest_plot(){
+        var svg = d3.select("forest_plot"), margin = 200, width = svg.attr("width") - margin, height = svg.attr("height") - margin;
+        forest_xScale = d3.scaleBand().range ([0, width]).padding(0.4)
+        forest_yScale = d3.scaleLinear().range ([height, 0]);
+
+        var g = svg.append("g")
+               .attr("transform", "translate(" + 100 + "," + 100 + ")");
+    }
 
     function createLegend(){
         
