@@ -685,7 +685,7 @@
             .append("circle")
             //.attr("class","dots")
             .attr("class", "forest_dot")
-            .attr("r", radius)
+            .attr("r", 3)
             //.attr("cx", function(d) { return forest_xScale( parseInt(d.properties.location_id)); })
             .attr("cx", function(d,i) { return 4*i; })
             .attr("cy", function(d) { return forest_yScale(d.properties.mean); });
