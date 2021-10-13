@@ -502,6 +502,8 @@
             if(d.properties.link_two != ''){
                 links += "; <a href='"+d.properties.link_two+"'Link2 </a>"
             }
+            console.log("LINKS")
+            console.log(links)
 
             Tooltip
             .html("Location:<br>"+location + "<br><br>Type:<br>" + d.properties.study_info + "<br><br>Mean Seroprevalence:<br>" + d.properties.mean+"<br><br>Assay name:<br>"+d.properties.assay_name + "<br><br>Dates:<br>" + dates + "<br><br>Source:<br>"+ d.properties.source + links)
