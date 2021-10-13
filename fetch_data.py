@@ -143,8 +143,8 @@ fetch_study_total_seroprevalence()
 fetch_study_total_ifr()
 fetch_study_link()
 
-match_data(study_index,study_prevalence,'location_id',['mean'])
-match_data(study_index,study_ifr,'location_id',['IFR_mean'])
+match_data(study_index,study_prevalence,'location_id',['mean','p025','p975'])
+match_data(study_index,study_ifr,'location_id',['IFR_mean','IFR_p025','IFR_p975'])
 match_data(study_index,study_link,'location_id',['source','link_one','link_two'])
 save_data(study_index)
 
