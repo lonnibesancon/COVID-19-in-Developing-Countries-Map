@@ -606,6 +606,9 @@
         var height = (forest_plot.attr("height") - 2*margin);
         var width = (forest_plot.attr("width") - 2*margin)
 
+        forest_plot.style("marginLeft",margin)
+        forest_plot.style("marginRight",margin)
+
         console.log("height")
         console.dir(height)         
 
@@ -634,14 +637,14 @@
         //Add the X-axis
         forest_plot.append("g")
             .attr("class","axis")
-            //.attr("transform", "translate(0," + height + ")")
-            .attr("transform", "translate("+margin+","+ height + ")")
+            .attr("transform", "translate(0," + height + ")")
+            //.attr("transform", "translate("+margin+","+ height + ")")
             .call(d3.axisBottom(forest_xScale));
 
         // Add the Y Axis
         forest_plot.append("g")
             .attr("class","axis")
-            .attr("transform", "translate("+margin+",0)")
+            //.attr("transform", "translate("+margin+",0)")
             .call(d3.axisLeft(forest_yScale));
 
     }
