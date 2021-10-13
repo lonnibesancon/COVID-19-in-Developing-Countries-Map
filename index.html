@@ -598,8 +598,8 @@
         console.log("COUCOU")
         console.dir(svg)
         var margin = 200 
-        var width = forest_plot.attr("width") - margin 
-        var height = forest_plot.attr("height") - margin;
+        var width = forest_plot.style("width") - margin 
+        var height = forest_plot.style("height") - margin;
         forest_xScale = d3.scaleBand().range ([0, width]).padding(0.4)
         forest_yScale = d3.scaleLinear().range ([height, 0]);
 
