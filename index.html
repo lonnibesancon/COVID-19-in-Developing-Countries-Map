@@ -617,49 +617,18 @@
 
         forest_xScale = d3.scaleLinear().range([0, width])
         forest_yScale = d3.scaleLinear().range([height, 0]);
-
-        //forest_xScale.domain(d3.extent(initial_data, function(d) { return (d.location_id) }));
-        console.log("initial_data")
-        console.dir(initial_data)
-
         forest_xScale.domain([-2, initial_data.length])    //We want to not have the first study right on the axis, so we space it out
-        //forest_xScale.domain([d3.min(initial_data, function(d) { return  parseInt(d.location_id); }), d3.max(initial_data, function(d) { return  parseInt(d.location_id); })])
         forest_yScale.domain([0, 100]);
 
-        let location_id = initial_data[0].location_id
-        let test = forest_xScale(location_id)
-        console.log("--Location_id = "+location_id+" Test = "+test)
-        location_id = initial_data[1].location_id
-        test = forest_xScale(location_id)
-        console.log("--Location_id = "+location_id+" Test = "+test)
-        location_id = initial_data[10].location_id
-        test = forest_xScale(location_id)
-        console.log("--Location_id = "+location_id+" Test = "+test)
-        location_id = initial_data[11].location_id
-        test = forest_xScale(location_id)
-        console.log("--Location_id = "+location_id+" Test = "+test)
 
 
-        /*var xAxis = d3.svg.axis().scale(forest_xScale).orient("bottom");
-
-         x-axis
-        svg.append("g")
-            .attr("class", "x axis")
-            .attr("transform", "translate(0," + height + ")")
-            .call(xAxis)
-        .append("text")
-            .attr("class", "label")
-            .attr("x", width)
-            .attr("y", -6)
-            .style("text-anchor", "end")
-            .text("Calories");*/
 
         //Add the X-axis
         forest_plot.append("g")
             .attr("class","axis")
             .attr("transform", "translate(0," + height + ")")
-            //.attr("transform", "translate("+margin+","+ height + ")")
-            .call(d3.axisBottom(forest_xScale));
+            .call(d3.axisBottom(forest_xScale))
+            .tickSize(0);
 
         // Add the Y Axis
         forest_plot.append("g")
