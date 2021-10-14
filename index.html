@@ -988,9 +988,9 @@
             .style("font-size",font_size);
 
         legendSvg.append("text")
-            .attr("x",scale*(legend2_x_start+(width_rectangle/2)-13+x_extra_offset))
+            .attr("x",scale*(legend2_x_start+(width_rectangle/2)-13+x_extra_offset)-10)
             .attr("y",scale*(height_rectangle+80+y_offset))
-            .text("100%")
+            .text(max_seroprevalence+"%")
             .attr("id","legend_gradient_max")
             .attr("class","legend_text")
             .style("fill",text_color)
