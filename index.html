@@ -731,7 +731,7 @@
             .append("rect")
             .attr("class", "forest_bars")
             //.attr("r", 3)
-            .attr("x", function(d,i) { return (4*i-2); })
+            .attr("x", function(d,i) { return (6*i-2); })
             .attr("y", function(d,i) { 
                 let y 
                 if(variable_focus == possible_focus[0]){
@@ -795,7 +795,7 @@
         id_to_select = "#d_"+index
         selection = d3.select(id_to_select)
         selection.classed('hovered', false)
-        id_to_select = "#d_"+index
+        id_to_select = "#b_"+index
         selection = d3.select(id_to_select)
         selection.classed('hovered', false)
 
