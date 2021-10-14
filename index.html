@@ -1108,17 +1108,13 @@
                 console.dir(err)
             }
             else{
-                for (var i = 0 ; i < output_data.features.length ; i ++){
-                    output_data.features[i].id = i
-                }
                 initial_data = output_data
                 data_to_display = output_data.features
-                if(variable_focus == possible_focus[0]){
-                    data_to_display.sort(sortBy('mean'));
+                data_to_display.sort(sortBy('mean'));
+                for (var i = 0 ; i < data_to_display.length ; i ++){
+                    data_to_display[i].id = i
                 }
-                else{
-                    data_to_display.sort(sortBy('IFR_mean'));
-                }
+          
                 createDots(data_to_display)
                 createForest(data_to_display)
             }
