@@ -726,7 +726,7 @@
             .attr("id",function(d,i){
                 return "b_"+i
             })
-            .on("mouseover", function(d,i){ console.log(""+this.attr("id")); handleMouseOver(d,i,this)})
+            .on("mouseover", function(d,i){ console.log(""+this.id); handleMouseOver(d,i,this)})
             .on("mouseout", function(d,i){handleMouseOut(d,i,this)})
             .merge(forest_bars)
             .transition()
