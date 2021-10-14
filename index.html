@@ -745,15 +745,18 @@
             })
             .attr("width", 2)
             .attr("height", function(d) { 
-                let y
+                let y_min
+                let y_max
                 if(variable_focus == possible_focus[0]){
-                    y = forest_yScale(d.properties.p975-d.properties.p025)
+                    y_min = forest_yScale(d.properties.p025)
+                    y_max= forest_yScale(d.properties.p975)
                 }
                 else{
-                    y = forest_yScale(d.properties.IFR_p025-d.properties.IFR_p975)
+                    y_min = forest_yScale(d.properties.IFR_p025)
+                    y_max= forest_yScale(d.properties.IFR_p975)
 
                 }
-                return y
+                return (y_min-y_max)
             })
             .attr("id",function(d,i){
                 return "b_"+i
