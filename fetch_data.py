@@ -79,9 +79,9 @@ def fetch_study_total_ifr():
     study_ifr = list(csv.DictReader(response))
 
     for row in study_ifr:
-        row["IFR_mean"] = round((float(row["IFR_mean"])*100),9)
-        row["IFR_p025"] = round((float(row["IFR_p025"])*100),9)
-        row["IFR_p975"] = round((float(row["IFR_p975"])*100),9)
+        row["IFR_mean"] = round((float(row["IFR_mean"])),9)
+        row["IFR_p025"] = round((float(row["IFR_p025"])),9)
+        row["IFR_p975"] = round((float(row["IFR_p975"])),9)
 
 '''
 Function to remove specific keys in a list of dict
