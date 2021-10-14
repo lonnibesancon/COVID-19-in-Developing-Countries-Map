@@ -677,7 +677,8 @@
             .data(input_data, function(d) { return d.properties.location_id; });
 
         forest.exit().remove()
-        forest.enter()
+        forest.join()
+        .enter()
             //.append("circle")
             .append("path")
             .attr("d", d3.symbol()
@@ -697,9 +698,8 @@
                 return "f_"+i
             })
             .on("mouseover", function(d,i){handleMouseOver(d,i,this)})
-            .on("mouseout", function(d,i){handleMouseOut(d,i,this)});
-
-        forest.update()
+            .on("mouseout", function(d,i){handleMouseOut(d,i,this)})
+        update()
             .attr("transform", function(d,i) {
                 let y = forest_positionScale(i)
                 let x
