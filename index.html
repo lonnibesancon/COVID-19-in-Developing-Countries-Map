@@ -722,7 +722,7 @@
             .append("rect")
             .attr("class", "forest_bars")
             //.attr("r", 3)
-            .attr("x", function(d,i) { return (forest_xScale(i)); })
+            .attr("x", function(d,i) { return (forest_xScale(i)-1); })
             .attr("y", function(d,i) { 
                 let y 
                 if(variable_focus == possible_focus[0]){
