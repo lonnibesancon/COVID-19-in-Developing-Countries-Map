@@ -682,8 +682,8 @@
             .attr("id",function(d,i){
                 return "f_"+i
             })
-            .on("mouseover", function(d,i){handleMouseOver(d,i,this)})
-            .on("mouseout", function(d,i){handleMouseOut(d,i,this)})
+            .on("mouseover", function(d,i){handleMouseOver(""+this.id)})
+            .on("mouseout", function(d,i){handleMouseOut(""+this.id)})
         .merge(forest)
             .transition()
             .duration(700)
@@ -726,8 +726,8 @@
             .attr("id",function(d,i){
                 return "b_"+i
             })
-            .on("mouseover", function(d,i){ console.log(""+this.id); handleMouseOver(d,i,this)})
-            .on("mouseout", function(d,i){handleMouseOut(d,i,this)})
+            .on("mouseover", function(d,i){ handleMouseOver(""+this.id)})
+            .on("mouseout", function(d,i){handleMouseOut(""+this.id)})
             .merge(forest_bars)
             .transition()
             .duration(700)
@@ -766,7 +766,7 @@
 
     }
 
-    function handleMouseOver(datum,index,id){
+    function handleMouseOver(id){
         id = id.split("_")[1]   //We only need the number
         let id_to_select = "#f_"+id
         let selection = d3.select(id_to_select)
@@ -785,7 +785,7 @@
         
     }
 
-    function handleMouseOut(datum,index,id){
+    function handleMouseOut(id){
         id = id.split("_")[1]   //We only need the number
         let id_to_select = "#f_"+id
         let selection = d3.select(id_to_select)
@@ -1030,8 +1030,8 @@
 
             )
             .on("click",mouseClickData)
-            .on("mouseover", function(d,i){handleMouseOver(d,i,this)})
-            .on("mouseout", function(d,i){handleMouseOut(d,i,this)});
+            .on("mouseover", function(d,i){handleMouseOver(""+this.id)})
+            .on("mouseout", function(d,i){handleMouseOut(""+this.id)});
 
         render();
       }
