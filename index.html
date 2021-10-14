@@ -261,11 +261,11 @@
             return function(a, b) {
                 //console.log("a.properties[field] = "+a.properties[field])
                 //console.log("b.properties[field] = "+b.properties[field])
-                if(parseFloat(a.properties[field]) > parseFloat(b.properties[field])){
+                if(a.properties[field] > b.properties[field]){
                     //console.log("Return a > b")
                     return -1 
                 }         
-                else if(parseFloat(a.properties[field]) > parseFloat(b.properties[field])){
+                else if(a.properties[field] > b.properties[field]){
                     //console.log("Return a < b")
                     return 1
                 }
