@@ -188,6 +188,8 @@
         var min_date_end = null 
         var max_date_end = null 
 
+        var max_ci_IFR, max_IFR, max_CI_seroprevalence, max_seroprevalence;
+
 
 
         const age_specific_ifr = "Age-Specific IFR"
@@ -509,16 +511,9 @@
             let tmp = document.getElementById('gradient_legend')
             tmp.textContent = value_for_gradient + " (in %)"
             tmp = document.getElementById('legend_gradient_max')
-            var max_ci,max 
             if(variable_focus == possible_focus[0]){
-                max_ci = d3.max(initial_data.properties, function(d) {  return +d["p975"]; });
-                max = d3.max(initial_data.properties, function(d) {  return +d["mean"]; });
-                console.log("Max (case1) = "+max)
             }
             else{
-                max_ci = d3.max(initial_data.properties, function(d) {  return +d["IFR_p975"]; });
-                max = d3.max(initial_data.properties, function(d) {  return +d["IFR_mean"]; });
-                console.log("Max (case2) = "+max)
             }
 
             tmp.textContent = ""+max+"%"
@@ -602,6 +597,10 @@
             .then(function(data){
                 initial_data = JSON.parse(JSON.stringify(data))
                 //initial_data = data
+                max_ci_seroprevalence= d3.max(initial_data, function(d) {  return +d["p975"]; });
+                max_ci_IFR= d3.max(initial_data, function(d) {  return +d["IFR_p975"]; });
+                max_seroprevalence= d3.max(initial_data, function(d) {  return +d["mean"]; });
+                max_IFR= d3.max(initial_data, function(d) {  return +d["IFR_mean"]; });
                 updateMaxMinForColorScale(data,"mean")
                 createLegend()
                 createMap()
@@ -662,9 +661,7 @@
         forest_valueScale = d3.scaleLinear().range([0, width])
         forest_positionScale = d3.scaleLinear().range([height, 0]);
         forest_positionScale.domain([-2, initial_data.length+2])    //We want to not have the first study right on the axis, so we space it out
-        let max_seroprevalence= d3.max(initial_data, function(d) {  return +d["p975"]; });
-        let max_IFR= d3.max(initial_data, function(d) {  return +d["IFR_p975"]; });
-        forest_valueScale.domain([-0.05, d3.max([max_seroprevalence,max_IFR])]);
+        forest_valueScale.domain([-0.05, max_ci_seroprevalence]);
 
 
         //Add the X-axis
