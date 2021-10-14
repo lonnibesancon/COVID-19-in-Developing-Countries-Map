@@ -656,13 +656,13 @@
 
             )
             .attr("transform", function(d,i) {
-                let x = forest_valueScale(i)
+                let x = forest_positionScale(i)
                 let y
                 if(variable_focus == possible_focus[0]){
-                    y = forest_positionScale(d.properties.mean)
+                    y = forest_valueScale(d.properties.mean)
                 }
                 else{
-                    y = forest_positionScale(d.properties.IFR_mean)
+                    y = forest_valueScale(d.properties.IFR_mean)
                 }
                 let coordinates = ""+x+","+y
                 return "translate("+coordinates+")"
@@ -690,14 +690,14 @@
             .append("rect")
             .attr("class", "forest_bars")
             //.attr("r", 3)
-            .attr("x", function(d,i) { return (forest_valueScale(i)-1); })
-            .attr("y", function(d,i) { 
+            .attr("y", function(d,i) { return (forest_positionScale(i)-1); })
+            .attr("x", function(d,i) { 
                 let y 
                 if(variable_focus == possible_focus[0]){
-                    y = forest_positionScale(d.properties.p975)
+                    y = forest_valueScale(d.properties.p975)
                 }
                 else{
-                    y = forest_positionScale(d.properties.IFR_p975)
+                    y = forest_valueScale(d.properties.IFR_p975)
                 }
                 return y
 
@@ -707,12 +707,12 @@
                 let y_min
                 let y_max
                 if(variable_focus == possible_focus[0]){
-                    y_min = forest_positionScale(d.properties.p025)
-                    y_max= forest_positionScale(d.properties.p975)
+                    y_min = forest_valueScale(d.properties.p025)
+                    y_max= forest_valueScale(d.properties.p975)
                 }
                 else{
-                    y_min = forest_positionScale(d.properties.IFR_p025)
-                    y_max= forest_positionScale(d.properties.IFR_p975)
+                    y_min = forest_valueScale(d.properties.IFR_p025)
+                    y_max= forest_valueScale(d.properties.IFR_p975)
 
                 }
                 return (y_min-y_max)
