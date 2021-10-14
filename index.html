@@ -1091,8 +1091,15 @@
             }
             else{
                 initial_data = output_data
-                createDots(output_data.features)
-                createForest(output_data.features)
+                data_to_display = output_data.features
+                if(variable_focus == possible_focus[0]){
+                    data_to_display.sort(sortBy('mean'));
+                }
+                else{
+                    data_to_display.sort(sortBy('IFR_mean'));
+                }
+                createDots(data_to_display)
+                createForest(data_to_display)
             }
             
 
