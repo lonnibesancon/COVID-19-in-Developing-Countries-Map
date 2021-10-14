@@ -634,7 +634,8 @@
         forest_plot.append("g")
             .attr("class","axis")
             //.attr("transform", "translate("+margin+",0)")
-            .call(d3.axisLeft(forest_yScale));
+            .call(d3.axisLeft(forest_yScale))
+            .tickSize(1);
 
     }
 
