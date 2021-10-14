@@ -259,18 +259,18 @@
         //Custom sort function 
         function sortBy(field) {
             return function(a, b) {
-                console.log("a.properties[field] = "+a.properties[field])
-                console.log("b.properties[field] = "+b.properties[field])
+                //console.log("a.properties[field] = "+a.properties[field])
+                //console.log("b.properties[field] = "+b.properties[field])
                 if(parseFloat(a.properties[field]) > parseFloat(b.properties[field])){
-                    console.log("Return a > b")
+                    //console.log("Return a > b")
                     return -1 
                 }         
                 else if(parseFloat(a.properties[field]) > parseFloat(b.properties[field])){
-                    console.log("Return a < b")
+                    //console.log("Return a < b")
                     return 1
                 }
                 else{
-                    console.log("Return a = b")
+                    //console.log("Return a = b")
                     return 0
                 }
                 //return (a.properties[field] > b.properties[field]) - (a.properties[field] < b.properties[field])
