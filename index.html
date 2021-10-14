@@ -685,14 +685,12 @@
         var forest = forest_plot.selectAll(".forest_dot")
             .data(input_data);
 
-        console.log("FOREST")
-        console.dir(forest)
         forest.exit().remove()
         forest.enter()
             //.append("circle")
             .append("path")
             .attr("d", d3.symbol()
-                .size(80)
+                .size(70)
                 .type(function(d) { 
                     return(getShape(d.properties.study_info))
                 })
@@ -700,13 +698,19 @@
             )
             .attr("transform", function(d,i) {
                 let x = 6*i
-                let y = forest_yScale(d.properties.mean)
+                let y
+                if(variable_focus == possible_focus[0]){
+                    y = forest_yScale(d.properties.mean)
+                }
+                else{
+                    y = forest_yScale(d.properties.IFR_mean)
+                }
                 let coordinates = ""+x+","+y
                 return "translate("+coordinates+")"
             })
             //.attr("class","dots")
             .attr("class", "forest_dot")
-            .attr("r", 3)
+            //.attr("r", 3)
             //.attr("cx", function(d) { return forest_xScale( parseInt(d.properties.location_id)); })
             //.attr("cx", function(d,i) { return 4*i; })
             //.attr("cy", function(d) { return forest_yScale(d.properties.mean); })
