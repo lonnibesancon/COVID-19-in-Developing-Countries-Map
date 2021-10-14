@@ -699,7 +699,7 @@
             })
             .on("mouseover", function(d,i){handleMouseOver(d,i,this)})
             .on("mouseout", function(d,i){handleMouseOut(d,i,this)})
-        update()
+        .update()
             .attr("transform", function(d,i) {
                 let y = forest_positionScale(i)
                 let x
