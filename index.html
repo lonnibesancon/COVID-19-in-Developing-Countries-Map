@@ -715,7 +715,7 @@
                     y_max= forest_positionScale(d.properties.IFR_p975)
 
                 }
-                return (y_max-y_min)
+                return (y_min-y_max)
             })
             .attr("id",function(d,i){
                 return "b_"+i
