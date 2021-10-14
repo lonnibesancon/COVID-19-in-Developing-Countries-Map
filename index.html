@@ -729,8 +729,8 @@
                 return "b_"+i
             })
             .on("mouseover", function(d,i){handleMouseOver(d,i,this)})
-            .on("mouseout", function(d,i){handleMouseOut(d,i,this)});
-            .merge(forest)
+            .on("mouseout", function(d,i){handleMouseOut(d,i,this)})
+            .merge(forest_bars)
             .transition()
             .duration(500)
             .attr("y", function(d,i) { return (forest_positionScale(i)-1); })
