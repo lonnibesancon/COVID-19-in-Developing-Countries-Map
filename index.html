@@ -511,13 +511,13 @@
             tmp = document.getElementById('legend_gradient_max')
             var max_ci,max 
             if(variable_focus == possible_focus[0]){
-                max_ci = d3.max(initial_data, function(d) {  return +d["p975"]; });
-                max = d3.max(initial_data, function(d) {  return +d["mean"]; });
+                max_ci = d3.max(initial_data.properties, function(d) {  return +d["p975"]; });
+                max = d3.max(initial_data.properties, function(d) {  return +d["mean"]; });
                 console.log("Max (case1) = "+max)
             }
             else{
-                max_ci = d3.max(initial_data, function(d) {  return +d["IFR_p975"]; });
-                max = d3.max(initial_data, function(d) {  return +d["IFR_mean"]; });
+                max_ci = d3.max(initial_data.properties, function(d) {  return +d["IFR_p975"]; });
+                max = d3.max(initial_data.properties, function(d) {  return +d["IFR_mean"]; });
                 console.log("Max (case2) = "+max)
             }
 
