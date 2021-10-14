@@ -511,9 +511,14 @@
             let tmp = document.getElementById('gradient_legend')
             tmp.textContent = value_for_gradient + " (in %)"
             tmp = document.getElementById('legend_gradient_max')
+            let max_ci,max;
             if(variable_focus == possible_focus[0]){
+                max_ci = max_ci_seroprevalence
+                max = max_seroprevalence
             }
             else{
+                max_ci = max_ci_IFR
+                max = max_IFR
             }
 
             tmp.textContent = ""+max+"%"
