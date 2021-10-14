@@ -767,6 +767,7 @@
     }
 
     function handleMouseOver(datum,index,graph_object){
+        console.dir(graph_object)
         let id_to_select = "#f_"+index
         let selection = d3.select(id_to_select)
         selection.classed('hovered', true)
