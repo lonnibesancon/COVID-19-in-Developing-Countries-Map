@@ -522,6 +522,8 @@
             }
 
             tmp.textContent = ""+max+"%"
+            colorScale.domain([0,max]);
+            forest_valueScale.domain([0,max])
         }
 
         var Tooltip = d3.select("#map")
@@ -606,7 +608,7 @@
                 max_ci_IFR= d3.max(initial_data, function(d) {  return +d["IFR_p975"]; });
                 max_seroprevalence= d3.max(initial_data, function(d) {  return +d["mean"]; });
                 max_IFR= d3.max(initial_data, function(d) {  return +d["IFR_mean"]; });
-                updateMaxMinForColorScale(data,"mean")
+                colorScale.domain([0,max_seroprevalence]);
                 createLegend()
                 createMap()
                 createForestPlot()
@@ -1075,11 +1077,11 @@
 
 
 
-        function updateMaxMinForColorScale(data, column_name){
+        /*function updateMaxMinForColorScale(data, column_name){
             var max =d3.max(data, function(d) {  return +d[column_name]; });
             var min =d3.min(data, function(d) {  return +d[column_name];})
             colorScale.domain([0,max_value]);
-        }
+        }*/
 
 
         function getShape(input){
