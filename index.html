@@ -749,11 +749,11 @@
                 let y_max
                 if(variable_focus == possible_focus[0]){
                     y_min = forest_yScale(d.properties.p025)
-                    y_min = forest_yScale(d.properties.p975)
+                    y_max = forest_yScale(d.properties.p975)
                 }
                 else{
-                    y = forest_yScale(d.properties.IFR_p025)
-                    y_min = forest_yScale(d.properties.IFR_p975)
+                    y_min = forest_yScale(d.properties.IFR_p025)
+                    y_max = forest_yScale(d.properties.IFR_p975)
                 }
                 return (y_max-y_min)
             })
