@@ -521,9 +521,12 @@
                 max = max_IFR
             }
 
-            tmp.textContent = ""+max+"%"
+            
             colorScale.domain([0,max]);
             forest_valueScale.domain([0,max])
+
+            max = parseFloat("max").toFixed(2)
+            tmp.textContent = ""+max+"%"
         }
 
         var Tooltip = d3.select("#map")
