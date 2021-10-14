@@ -615,8 +615,8 @@
         forest_plot.style("margin",margin+"px")
    
 
-        forest_yScale = d3.scaleLinear().range([0, width])
-        forest_xScale = d3.scaleLinear().range([height, 0]);
+        forest_xScale = d3.scaleLinear().range([0, width])
+        forest_yScale = d3.scaleLinear().range([height, 0]);
         forest_yScale.domain([-2, initial_data.length])    //We want to not have the first study right on the axis, so we space it out
         forest_xScale.domain([0, 100]);
 
@@ -702,8 +702,8 @@
                 return y
 
             })
-            .attr("width", 2)
-            .attr("height", function(d) { 
+            .attr("height", 2)
+            .attr("widht", function(d) { 
                 let y_min
                 let y_max
                 if(variable_focus == possible_focus[0]){
@@ -715,7 +715,7 @@
                     y_max= forest_yScale(d.properties.IFR_p975)
 
                 }
-                return (y_min-y_max)
+                return (y_max-y_min)
             })
             .attr("id",function(d,i){
                 return "b_"+i
