@@ -256,6 +256,13 @@
             filterData();
         }
 
+        //Custom sort function 
+        function sortBy(field) {
+            return function(a, b) {
+                eturn (a[field] > b[field]) - (a[field] < b[field])
+            };
+        }
+
 
         // Parse and validate a date in format yyyy-mm-dd
         // Note that a date without a timezone is treated as LOCAL since
@@ -334,6 +341,12 @@
                     continue 
                 }
                 data_to_display.push(elem)
+            }
+            if(variable_focus == possible_focus[0]){
+                data_to_display.sort(sortBy('mean'));
+            }
+            else{
+                data_to_display.sort(sortBy('IFR_mean'));
             }
             createDots(data_to_display)
             createForest(data_to_display)
