@@ -680,7 +680,7 @@
             .append("path")
             .attr("class", "forest_dot")
             .attr("id",function(d,i){
-                return "f_"+i
+                return "f_"+d.id
             })
             .on("mouseover", function(d){handleMouseOver(d,""+this.id)})
             .on("mouseout", function(d){handleMouseOut(d,""+this.id)})
@@ -724,7 +724,7 @@
             .attr("class", "forest_bars")
             //.attr("r", 3)
             .attr("id",function(d,i){
-                return "b_"+i
+                return "b_"+d.id
             })
             .on("mouseover", function(d){ handleMouseOver(d,""+this.id)})
             .on("mouseout", function(d){handleMouseOut(d,""+this.id)})
@@ -1011,7 +1011,7 @@
                 return "dots"
             })
             .attr("id", function(d,i){
-                return("d_"+i)
+                return("d_"+d.id)
             })
             .style("fill", function(d){
                 if(variable_focus == possible_focus[0]){
@@ -1112,6 +1112,9 @@
             }
             else{
                 initial_data = output_data
+                for(var i = 0 ; i < output_data.features.length ; i ++){
+                    output_data.features[i].id = i
+                }
                 data_to_display = output_data.features
                 if(variable_focus == possible_focus[0]){
                     data_to_display.sort(sortBy('mean'));
