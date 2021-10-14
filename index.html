@@ -346,10 +346,7 @@
 
                 //If we focus on Seroprevalece, no problem, but if we focus on IFR, some elements won't have a value, we should remove them
                 if(variable_focus == possible_focus[1]){
-                    console.log("elem.properties.IFR_mean = "+(elem.properties.IFR_mean))
-                    console.log("elem.properties.IFR_mean == null = "+(elem.properties.IFR_mean == null))
                     if(elem.properties.IFR_mean == null){
-                        console.log("MISSING IFR DATA")
                         continue
                     }
                 }
@@ -653,8 +650,6 @@
         var margin = 20 
 
 
-        console.log("Printing forest_plot")
-        console.dir(forest_plot)
         var height = (forest_plot.attr("height") - 2*margin);
         var width = (forest_plot.attr("width") - 2*margin)
 
@@ -684,9 +679,6 @@
     }
 
     function createForest(input_data){
-        console.dir(input_data)
-        console.log("forest_plot")
-        console.dir(forest_plot)
         var forest = forest_plot.selectAll(".forest_dot")
             .data(input_data, function(d) { return d.properties.location_id; });
 
@@ -1012,8 +1004,6 @@
         var dots = svg.selectAll(".dots")
             .data(input_data,function(d) { return d.properties.location_id; });
 
-        console.log("DOTS")
-        console.dir(dots)
 
         dots.exit().remove()
         dots.enter()
