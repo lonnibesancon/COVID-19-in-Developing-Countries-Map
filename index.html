@@ -615,10 +615,10 @@
         forest_plot.style("margin",margin+"px")
    
 
-        forest_xScale = d3.scaleLinear().range([0, width])
-        forest_yScale = d3.scaleLinear().range([height, 0]);
-        forest_xScale.domain([-2, initial_data.length])    //We want to not have the first study right on the axis, so we space it out
-        forest_yScale.domain([0, 100]);
+        forest_yScale = d3.scaleLinear().range([0, width])
+        forest_xScale = d3.scaleLinear().range([height, 0]);
+        forest_yScale.domain([-2, initial_data.length])    //We want to not have the first study right on the axis, so we space it out
+        forest_xScale.domain([0, 100]);
 
 
 
@@ -627,15 +627,13 @@
         forest_plot.append("g")
             .attr("class","axis")
             .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(forest_xScale))
-            .tickSize(0);
+            .call(d3.axisBottom(forest_xScale));
 
         // Add the Y Axis
         forest_plot.append("g")
             .attr("class","axis")
             //.attr("transform", "translate("+margin+",0)")
-            .call(d3.axisLeft(forest_yScale))
-            .tickSize(1);
+            .call(d3.axisLeft(forest_yScale));
 
     }
 
