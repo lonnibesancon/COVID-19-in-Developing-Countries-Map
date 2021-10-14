@@ -651,7 +651,7 @@
         forest_positionScale = d3.scaleLinear().range([height, 0]);
         forest_positionScale.domain([-2, initial_data.length+2])    //We want to not have the first study right on the axis, so we space it out
         let max_seroprevalence= d3.max(initial_data, function(d) {  return +d["mean"]; });
-        let max_IFR= d3.max(initial_data.features, function(d) {  return +d["IFR_mean"]; });
+        let max_IFR= d3.max(initial_data, function(d) {  return +d["IFR_mean"]; });
         forest_valueScale.domain([-0.05, d3.max([max_seroprevalence,max_IFR])]);
 
 
