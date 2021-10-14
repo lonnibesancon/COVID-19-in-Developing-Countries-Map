@@ -681,6 +681,11 @@
         .enter()
             //.append("circle")
             .append("path")
+            .attr("class", "forest_dot")
+            .attr("id",function(d,i){
+                return "f_"+i
+            })
+            .merge(forest)
             .attr("d", d3.symbol()
                 .size(40)
                 .type(function(d) { 
@@ -689,17 +694,12 @@
 
             )
             //.attr("class","dots")
-            .attr("class", "forest_dot")
             //.attr("r", 3)
             //.attr("cx", function(d) { return forest_valueScale( parseInt(d.properties.location_id)); })
             //.attr("cx", function(d,i) { return 4*i; })
             //.attr("cy", function(d) { return forest_positionScale(d.properties.mean); })
-            .attr("id",function(d,i){
-                return "f_"+i
-            })
             .on("mouseover", function(d,i){handleMouseOver(d,i,this)})
             .on("mouseout", function(d,i){handleMouseOut(d,i,this)})
-        .update()
             .attr("transform", function(d,i) {
                 let y = forest_positionScale(i)
                 let x
