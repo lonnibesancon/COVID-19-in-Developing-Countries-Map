@@ -677,15 +677,14 @@
             .data(input_data, function(d) { return d.properties.location_id; });
 
         forest.exit().remove()
-        forest.join()
-        .enter()
+        forest.enter()
             //.append("circle")
             .append("path")
             .attr("class", "forest_dot")
             .attr("id",function(d,i){
                 return "f_"+i
             })
-            .merge(forest)
+        .merge(forest)
             .attr("d", d3.symbol()
                 .size(40)
                 .type(function(d) { 
