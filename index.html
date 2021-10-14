@@ -617,7 +617,7 @@
 
         forest_valueScale = d3.scaleLinear().range([0, width])
         forest_positionScale = d3.scaleLinear().range([height, 0]);
-        forest_positionScale.domain([-2, initial_data.length])    //We want to not have the first study right on the axis, so we space it out
+        forest_positionScale.domain([-2, initial_data.length+2])    //We want to not have the first study right on the axis, so we space it out
         forest_valueScale.domain([0, 100]);
 
 
@@ -656,13 +656,13 @@
 
             )
             .attr("transform", function(d,i) {
-                let x = forest_positionScale(i)
-                let y
+                let y = forest_positionScale(i)
+                let x
                 if(variable_focus == possible_focus[0]){
-                    y = forest_valueScale(d.properties.mean)
+                    x = forest_valueScale(d.properties.mean)
                 }
                 else{
-                    y = forest_valueScale(d.properties.IFR_mean)
+                    x = forest_valueScale(d.properties.IFR_mean)
                 }
                 let coordinates = ""+x+","+y
                 return "translate("+coordinates+")"
@@ -692,30 +692,30 @@
             //.attr("r", 3)
             .attr("y", function(d,i) { return (forest_positionScale(i)-1); })
             .attr("x", function(d,i) { 
-                let y 
+                let x
                 if(variable_focus == possible_focus[0]){
-                    y = forest_valueScale(d.properties.p975)
+                    x = forest_valueScale(d.properties.p975)
                 }
                 else{
-                    y = forest_valueScale(d.properties.IFR_p975)
+                    x = forest_valueScale(d.properties.IFR_p975)
                 }
                 return y
 
             })
             .attr("height", 2)
             .attr("width", function(d) { 
-                let y_min
-                let y_max
+                let x_min
+                let x_max
                 if(variable_focus == possible_focus[0]){
-                    y_min = forest_valueScale(d.properties.p025)
-                    y_max= forest_valueScale(d.properties.p975)
+                    x_min = forest_valueScale(d.properties.p025)
+                    x_max= forest_valueScale(d.properties.p975)
                 }
                 else{
-                    y_min = forest_valueScale(d.properties.IFR_p025)
-                    y_max= forest_valueScale(d.properties.IFR_p975)
+                    x_min = forest_valueScale(d.properties.IFR_p025)
+                    x_max= forest_valueScale(d.properties.IFR_p975)
 
                 }
-                return (y_max-y_min)
+                return (x_max-x_min)
             })
             .attr("id",function(d,i){
                 return "b_"+i
