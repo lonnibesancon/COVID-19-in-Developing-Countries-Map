@@ -715,7 +715,7 @@
         //render();
 
         var forest_bars = forest_plot.selectAll(".forest_bars")
-            .data(input_data);
+            .data(input_data, function(d) { return d.properties.location_id; });
         forest_bars.exit().remove()
         forest_bars.enter()
             //.append("circle")
@@ -986,7 +986,7 @@
         svg.selectAll(".dots").remove(); //For when we update the map
 
         var dots = svg.selectAll(".dots")
-            .data(input_data);
+            .data(input_data,function(d) { return d.properties.location_id; });
 
         console.log("DOTS")
         console.dir(dots)
