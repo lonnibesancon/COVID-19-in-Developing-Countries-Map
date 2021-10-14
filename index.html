@@ -688,7 +688,7 @@
             .on("mouseout", function(d,i){handleMouseOut(d,i,this)})
         .merge(forest)
             .transition()
-            .duration(2500)
+            .duration(700)
             .attr("d", d3.symbol()
                 .size(40)
                 .type(function(d) { 
@@ -732,7 +732,7 @@
             .on("mouseout", function(d,i){handleMouseOut(d,i,this)})
             .merge(forest_bars)
             .transition()
-            .duration(2500)
+            .duration(700)
             .attr("y", function(d,i) { return (forest_positionScale(i)-1); })
             .attr("x", function(d,i) { 
                 let x
