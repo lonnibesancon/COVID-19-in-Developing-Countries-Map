@@ -687,18 +687,6 @@
                 })
 
             )
-            .attr("transform", function(d,i) {
-                let y = forest_positionScale(i)
-                let x
-                if(variable_focus == possible_focus[0]){
-                    x = forest_valueScale(d.properties.mean)
-                }
-                else{
-                    x = forest_valueScale(d.properties.IFR_mean)
-                }
-                let coordinates = ""+x+","+y
-                return "translate("+coordinates+")"
-            })
             //.attr("class","dots")
             .attr("class", "forest_dot")
             //.attr("r", 3)
@@ -711,6 +699,19 @@
             .on("mouseover", function(d,i){handleMouseOver(d,i,this)})
             .on("mouseout", function(d,i){handleMouseOut(d,i,this)});
 
+        forest.update()
+            .attr("transform", function(d,i) {
+                let y = forest_positionScale(i)
+                let x
+                if(variable_focus == possible_focus[0]){
+                    x = forest_valueScale(d.properties.mean)
+                }
+                else{
+                    x = forest_valueScale(d.properties.IFR_mean)
+                }
+                let coordinates = ""+x+","+y
+                return "translate("+coordinates+")"
+            })
 
         //render();
 
