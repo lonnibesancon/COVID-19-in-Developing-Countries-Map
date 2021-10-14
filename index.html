@@ -259,7 +259,7 @@
         //Custom sort function 
         function sortBy(field) {
             return function(a, b) {
-                return (a[field] > b[field]) - (a[field] < b[field])
+                return (a.properties[field] > b.properties[field]) - (a.properties[field] < b.properties[field])
             };
         }
 
