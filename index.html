@@ -613,9 +613,7 @@
         var width = (forest_plot.attr("width") - 2*margin)
 
         forest_plot.style("margin",margin+"px")
-
-        console.log("height")
-        console.dir(height)         
+   
 
         forest_xScale = d3.scaleLinear().range([0, width])
         forest_yScale = d3.scaleLinear().range([height, 0]);
@@ -623,7 +621,9 @@
         //forest_xScale.domain(d3.extent(initial_data, function(d) { return (d.location_id) }));
         console.log("initial_data")
         console.dir(initial_data)
-        forest_xScale.domain([d3.min(initial_data, function(d) { return  parseInt(d.location_id); }), d3.max(initial_data, function(d) { return  parseInt(d.location_id); })])
+
+        forest_xScale.domain([0, initial_data.length]) 
+        //forest_xScale.domain([d3.min(initial_data, function(d) { return  parseInt(d.location_id); }), d3.max(initial_data, function(d) { return  parseInt(d.location_id); })])
         forest_yScale.domain([0, 100]);
         console.log("forest_xScale")
         console.dir(forest_xScale)
@@ -696,7 +696,7 @@
 
             )
             .attr("transform", function(d,i) {
-                let x = 6*i
+                let x = forest_xScale(i)
                 let y
                 if(variable_focus == possible_focus[0]){
                     y = forest_yScale(d.properties.mean)
