@@ -584,15 +584,7 @@
 
         /****** Display code *****/
 
-        d3.csv("./map_data.csv")
-            .row(function(d) {
-                console.dir(d)
-                return{
-                    mean: +d.mean,
-                    IFR_mean: +d.IFR_mean,
-                }
-                 
-            })
+        d3.csv("./map_data.csv", d3.autoType)
             .then(function(data){
                 initial_data = JSON.parse(JSON.stringify(data))
                 //initial_data = data
