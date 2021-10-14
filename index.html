@@ -1031,6 +1031,8 @@
 
             )
             .on("click",mouseClickData)
+            .on("mouseover", function(d,i){handleMouseOver(d,i,this)})
+            .on("mouseout", function(d,i){handleMouseOut(d,i,this)});
 
         render();
       }
