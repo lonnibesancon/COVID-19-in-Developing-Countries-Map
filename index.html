@@ -317,7 +317,6 @@
             for(var i = 0 ; i < initial_data.features.length ; i++){
                 let elem = initial_data.features[i]
                 if(include_age_specific_IFR == false && elem.properties.study_info == age_specific_ifr){
-                    initial_data.features[i].display
                     continue
                 }
                 if(include_population_IFR == false && elem.properties.study_info == population_ifr){
@@ -680,8 +679,8 @@
             //.append("circle")
             .append("path")
             .attr("class", "forest_dot")
-            .attr("id",function(d){
-                return "f_"+d.id
+            .attr("id",function(d,i){
+                return "f_"+i
             })
             .on("mouseover", function(d,i){handleMouseOver(d,i,this)})
             .on("mouseout", function(d,i){handleMouseOut(d,i,this)})
@@ -701,7 +700,7 @@
             //.attr("cx", function(d,i) { return 4*i; })
             //.attr("cy", function(d) { return forest_positionScale(d.properties.mean); })
             .attr("transform", function(d,i) {
-                let y = forest_positionScale(d.id)
+                let y = forest_positionScale(i)
                 let x
                 if(variable_focus == possible_focus[0]){
                     x = forest_valueScale(d.properties.mean)
@@ -724,15 +723,15 @@
             .attr("height", 2)
             .attr("class", "forest_bars")
             //.attr("r", 3)
-            .attr("id",function(d){
-                return "b_"+d.id
+            .attr("id",function(d,i){
+                return "b_"+i
             })
-            .attr("y", function(d,i) { return (forest_positionScale(i)-1); })
             .on("mouseover", function(d,i){handleMouseOver(d,i,this)})
             .on("mouseout", function(d,i){handleMouseOut(d,i,this)})
             .merge(forest_bars)
             .transition()
             .duration(700)
+            .attr("y", function(d,i) { return (forest_positionScale(i)-1); })
             .attr("x", function(d,i) { 
                 let x
                 if(variable_focus == possible_focus[0]){
@@ -1110,11 +1109,12 @@
             else{
                 initial_data = output_data
                 data_to_display = output_data.features
-                data_to_display.sort(sortBy('mean'));
-                for (var i = 0 ; i < data_to_display.length ; i ++){
-                    data_to_display[i].id = i
+                if(variable_focus == possible_focus[0]){
+                    data_to_display.sort(sortBy('mean'));
                 }
-          
+                else{
+                    data_to_display.sort(sortBy('IFR_mean'));
+                }
                 createDots(data_to_display)
                 createForest(data_to_display)
             }
