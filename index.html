@@ -342,12 +342,17 @@
                 }
                 data_to_display.push(elem)
             }
+
+            console.log("Pre-sort")
+            console.dir(data_to_display)
             if(variable_focus == possible_focus[0]){
                 data_to_display.sort(sortBy('mean'));
             }
             else{
                 data_to_display.sort(sortBy('IFR_mean'));
             }
+            console.log("Post-sort")
+            console.dir(data_to_display)
             createDots(data_to_display)
             createForest(data_to_display)
 
