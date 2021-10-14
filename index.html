@@ -622,7 +622,7 @@
         console.log("initial_data")
         console.dir(initial_data)
 
-        forest_xScale.domain([0, initial_data.length]) 
+        forest_xScale.domain([-2, initial_data.length])    //We want to not have the first study right on the axis, so we space it out
         //forest_xScale.domain([d3.min(initial_data, function(d) { return  parseInt(d.location_id); }), d3.max(initial_data, function(d) { return  parseInt(d.location_id); })])
         forest_yScale.domain([0, 100]);
 
