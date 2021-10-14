@@ -684,7 +684,11 @@
             .attr("id",function(d,i){
                 return "f_"+i
             })
+            .on("mouseover", function(d,i){handleMouseOver(d,i,this)})
+            .on("mouseout", function(d,i){handleMouseOut(d,i,this)})
         .merge(forest)
+            .transition()
+            .duration(500)
             .attr("d", d3.symbol()
                 .size(40)
                 .type(function(d) { 
@@ -697,8 +701,6 @@
             //.attr("cx", function(d) { return forest_valueScale( parseInt(d.properties.location_id)); })
             //.attr("cx", function(d,i) { return 4*i; })
             //.attr("cy", function(d) { return forest_positionScale(d.properties.mean); })
-            .on("mouseover", function(d,i){handleMouseOver(d,i,this)})
-            .on("mouseout", function(d,i){handleMouseOut(d,i,this)})
             .attr("transform", function(d,i) {
                 let y = forest_positionScale(i)
                 let x
@@ -720,8 +722,17 @@
         forest_bars.enter()
             //.append("circle")
             .append("rect")
+            .attr("height", 2)
             .attr("class", "forest_bars")
             //.attr("r", 3)
+            .attr("id",function(d,i){
+                return "b_"+i
+            })
+            .on("mouseover", function(d,i){handleMouseOver(d,i,this)})
+            .on("mouseout", function(d,i){handleMouseOut(d,i,this)});
+            .merge(forest)
+            .transition()
+            .duration(500)
             .attr("y", function(d,i) { return (forest_positionScale(i)-1); })
             .attr("x", function(d,i) { 
                 let x
@@ -734,7 +745,6 @@
                 return x
 
             })
-            .attr("height", 2)
             .attr("width", function(d) { 
                 let x_min
                 let x_max
@@ -749,11 +759,6 @@
                 }
                 return (x_max-x_min)
             })
-            .attr("id",function(d,i){
-                return "b_"+i
-            })
-            .on("mouseover", function(d,i){handleMouseOver(d,i,this)})
-            .on("mouseout", function(d,i){handleMouseOut(d,i,this)});
         /*forest_plot.selectAll("dot")
             .data(data_to_display)
         .enter().append("circle")
