@@ -347,6 +347,7 @@
                 //If we focus on Seroprevalece, no problem, but if we focus on IFR, some elements won't have a value, we should remove them
                 if(variable_focus == possible_focus[1]){
                     if(elem.properties.IFR_mean == ""){
+                        console.log("MISSING IFR DATA")
                         continue
                     }
                 }
