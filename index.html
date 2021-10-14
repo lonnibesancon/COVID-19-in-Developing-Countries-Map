@@ -674,9 +674,9 @@
         console.log("forest_plot")
         console.dir(forest_plot)
         var forest = forest_plot.selectAll(".forest_dot")
-            .data(input_data);
+            .data(input_data, function(d) { return d.properties.location_id; });
 
-        //forest.exit().remove()
+        forest.exit().remove()
         forest.enter()
             //.append("circle")
             .append("path")
