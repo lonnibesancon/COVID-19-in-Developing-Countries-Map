@@ -424,7 +424,7 @@
         function filterRisk(elem){
             elem = elem.properties
             let value = checkSingleBiasRisk(elem,include_DU,"death_undercount_risk") & checkSingleBiasRisk(elem,include_SR,"seroreversion_risk") & checkSingleBiasRisk(elem,include_NRR,"non_response_risk") 
-            return ( )
+            return value
         }
 
         function filterData(){
