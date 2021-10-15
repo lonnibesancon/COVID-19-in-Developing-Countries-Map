@@ -132,28 +132,41 @@
                 </div>
             </fieldset>
             <fieldset class="inline">
-                <legend>Non Response Risk (uncheck to exclude):</legend>
-                <div>
-                  <input type="checkbox" id="NRR_high" name="NRR_high" checked onchange="changeAgeIFR()">
-                  <label for="Age-specific-IFR">High</label>
-                </div>
-                <div>
-                  <input type="checkbox" id="NRR_low" name="NRR_low" checked onchange="changePopulationIFR()">
-                  <label for="Population-IFR">Low</label>
-                </div>
-                <div>
+                <legend>Bias risks(uncheck to exclude):</legend>
+                <table>
+                    <tr>
+                        <th>Non Response</th>
+                        <th>Seroreversion</th> 
+                        <th>Death Undercount</th>
+                    </tr>
+                    <tr>
+
+                        <td><input type="checkbox" id="NRR_high" name="NRR" checked onchange="changeNRR()">
+                        <label for="NRR_high">High</label></td>
+                        <td><input type="checkbox" id="SR_high" name="SR" checked onchange="changeSR()">
+                        <label for="SR_high">High</label></td>
+                        <td><input type="checkbox" id="DU_high" name="DU" checked onchange="changeDU()">
+                        <label for="DU_high">High</label></td>
+                    </tr>
+                    <tr>
+
+                        <td><input type="checkbox" id="NRR_low" name="NRR" checked onchange="changeNRR()">
+                        <label for="NRR_low">Low</label></td>                        
+                        <td><input type="checkbox" id="SR_low" name="SR" checked onchange="changeSR()">
+                        <label for="SR_low">Low</label></td>
+                        <td><input type="checkbox" id="DU_low" name="DU" checked onchange="changeDU()">
+                        <label for="DU_low">Low</label></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td><input type="checkbox" id="DU_NA" name="DU" checked onchange="changeDU()">
+                        <label for="DU_NA">NA</label></td>
+                    </tr>
+
+                </table>
             </fieldset>
-            <fieldset class="inline">
-                <legend>Non Response Risk (uncheck to exclude):</legend>
-                <div>
-                  <input type="checkbox" id="NRR_high" name="NRR" checked onchange="changeNRR()">
-                  <label for="Age-specific-IFR">High</label>
-                </div>
-                <div>
-                  <input type="checkbox" id="NRR_low" name="NRR" checked onchange="changeNRR()">
-                  <label for="Population-IFR">Low</label>
-                </div>
-            </fieldset>
+            <!--
             <fieldset class="inline">
                 <legend>Seroreversion risk (uncheck to exclude):</legend>
                 <div>
@@ -169,17 +182,18 @@
                 <legend>Death undercount risk (uncheck to exclude):</legend>
                 <div>
                   <input type="checkbox" id="DU_high" name="DU" checked onchange="changeDU()">
-                  <label for="Age-specific-IFR">High</label>
+                  <label for="DU_high">High</label>
                 </div>
                 <div>
                   <input type="checkbox" id="DU_low" name="DU" checked onchange="changeDU()">
-                  <label for="Population-IFR">Low</label>
+                  <label for="DU_low">Low</label>
                 </div>
                 <div>
                   <input type="checkbox" id="DU_NA" name="DU" checked onchange="changeDU()">
-                  <label for="Population-IFR">NA</label>
+                  <label for="DU_NA">NA</label>
                 </div>
             </fieldset>
+            -->
 
             <!--
             <fieldset class="inline">
@@ -289,7 +303,7 @@
 
         function changeNRR(){
             var radios = document.getElementsByName("NRR");
-            for (var i = 0 ; i w radios.length ; i++) {
+            for (var i = 0 ; i < radios.length ; i++) {
                include_high_NRR[i] = radios[i].checked
             }
             filterData()
