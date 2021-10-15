@@ -87,12 +87,16 @@
         padding: 20px;
     }
 
-    .float-child {
-        width: 50%;
+    .float-child{
+        width: 40%;
         float: left;
         padding: 20px;
         border: 2px solid red;
     }  
+
+    .float-child-right{
+        width: 57%;
+    }
 </style>
 </head>
   <body>
@@ -233,11 +237,11 @@
     <div width="600" height="600" class="float-container">
 
         <div class="float-child"><svg width="600" height="600", id="forest_plot"></svg></div>
-        <div class="float-child">
+        <div class="float-child float-child-right">
             <p>UI TEST</p>
         </div>
     </div>
-    
+    <div id="map"></div>
     
     <script>
 
