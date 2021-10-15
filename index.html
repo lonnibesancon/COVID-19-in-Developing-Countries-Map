@@ -756,11 +756,13 @@
                 ifr_info = ""+d.properties.IFR_mean+ " ["+d.properties.IFR_p025+" ; "+d.properties.IFR_p975+" ]"
             }
             
-
-            Tooltip
+            document.getElementById("locationInfo").text = location
+            document.getElementById("studyInfo").text = d.properties.study_info
+            
+            /*Tooltip
             .html("Location:<br>"+location + "<br><br>Type:<br>" + d.properties.study_info + "<br><br>Seroprevalence: " + seroprevalence_info+ "<br>IFR: "+ifr_info+"<br><br>Assay name:<br>"+d.properties.assay_name + "<br><br>Dates:<br>" + dates + "<br><br>Source:<br>"+ d.properties.source + links)
             .style("left", tooltip_x)
-            .style("top", tooltip_y)
+            .style("top", tooltip_y)*/
         }
         
         
