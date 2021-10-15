@@ -405,6 +405,23 @@
             return true 
         }
 
+        function checkSingleBiasRisk(elem,risk_include_values,risk_name){
+            let values = ["High","Low","NA"]
+            for (var i = 0 ; i < risk_include_values.length ; i++){
+                if(risk_include_values[i] == false && elem[risk_name] == values[i]){
+                    return false
+                }
+            }
+            return true ;
+        }
+
+        //Returns false if the element is not within the wanted risk
+        function filterRisk(elem){
+            elem = elem.properties
+
+            return (checkSingleBiasRisk(elem,include_DU,"death_undercount_risk"))
+        }
+
         function filterData(){
             data_to_display =  []
             for(var i = 0 ; i < initial_data.features.length ; i++){
@@ -443,6 +460,11 @@
                         continue
                     }
                 }
+
+                if(filterRisk(elem) == false){
+                    continue
+                }
+
 
                 if(filterByDate(elem) == false){
                     continue 
