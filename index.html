@@ -131,6 +131,55 @@
                     <label for="Overall-Prevalence">Overall-Prevalence</label>
                 </div>
             </fieldset>
+            <fieldset class="inline">
+                <legend>Non Response Risk (uncheck to exclude):</legend>
+                <div>
+                  <input type="checkbox" id="NRR_high" name="NRR_high" checked onchange="changeAgeIFR()">
+                  <label for="Age-specific-IFR">High</label>
+                </div>
+                <div>
+                  <input type="checkbox" id="NRR_low" name="NRR_low" checked onchange="changePopulationIFR()">
+                  <label for="Population-IFR">Low</label>
+                </div>
+                <div>
+            </fieldset>
+            <fieldset class="inline">
+                <legend>Non Response Risk (uncheck to exclude):</legend>
+                <div>
+                  <input type="checkbox" id="NRR_high" name="NRR" checked onchange="changeNRR()">
+                  <label for="Age-specific-IFR">High</label>
+                </div>
+                <div>
+                  <input type="checkbox" id="NRR_low" name="NRR" checked onchange="changeNRR()">
+                  <label for="Population-IFR">Low</label>
+                </div>
+            </fieldset>
+            <fieldset class="inline">
+                <legend>Seroreversion risk (uncheck to exclude):</legend>
+                <div>
+                  <input type="checkbox" id="SR_high" name="SR" checked onchange="changeSR()">
+                  <label for="Age-specific-IFR">High</label>
+                </div>
+                <div>
+                  <input type="checkbox" id="SR_low" name="SR" checked onchange="changeSR()">
+                  <label for="Population-IFR">Low</label>
+                </div>
+            </fieldset>
+            <fieldset class="inline">
+                <legend>Death undercount risk (uncheck to exclude):</legend>
+                <div>
+                  <input type="checkbox" id="DU_high" name="DU" checked onchange="changeDU()">
+                  <label for="Age-specific-IFR">High</label>
+                </div>
+                <div>
+                  <input type="checkbox" id="DU_low" name="DU" checked onchange="changeDU()">
+                  <label for="Population-IFR">Low</label>
+                </div>
+                <div>
+                  <input type="checkbox" id="DU_NA" name="DU" checked onchange="changeDU()">
+                  <label for="Population-IFR">NA</label>
+                </div>
+            </fieldset>
 
             <!--
             <fieldset class="inline">
@@ -172,6 +221,10 @@
         var include_uniform = true ;
         var include_decreasing = true ;
         var include_increasing = true ;
+
+        var include_DU = [true, true, true]   //We include both high, low, and NA
+        var include_SR = [true, true]         //We include both high and low
+        var include_high_NRR = [true, true]   //We include both high and low
 
         const encode_national_studies = false
 
@@ -231,6 +284,14 @@
         }
         function changeIncreasing(){
             include_increasing = !include_increasing
+            filterData()
+        }
+
+        function changeNRR(){
+            var radios = document.getElementsByName("NRR");
+            for (var i = 0 ; i w radios.length ; i++) {
+               include_high_NRR[i] = radios[i].checked
+            }
             filterData()
         }
 
