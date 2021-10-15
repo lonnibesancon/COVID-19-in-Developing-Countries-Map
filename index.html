@@ -98,6 +98,10 @@
     .float-child-right{
         width: 54%;
     }
+    .studyInfo{
+        border: 3px solid #fff;
+        float: bottom;
+    }
 </style>
 </head>
   <body>
@@ -161,87 +165,93 @@
 
         <div class="float-child"><svg width="400" height="600", id="forest_plot"></svg></div>
         <div class="float-child">
-            <div id="data_to_show">
-                Visualize
-                    <select name="encodeVariable" id="encodeVariable" onchange="changeEncodeVariable()"> 
-                    </select> 
+            <div id="allUI">
+                <div id="data_to_show">
+                    Visualize
+                        <select name="encodeVariable" id="encodeVariable" onchange="changeEncodeVariable()"> 
+                        </select> 
+                </div>
+                <div id="date_div_start">
+                    Assay Starts:<br/>
+                    Min Date <input type="date" id="minDateInputStart" name="minDateInputStart" onchange="changeMinStart()" value="2018-11-23"></td>
+                    Max Date <input type="date" id="maxDateInputStart" name="maxDateInputStart" onchange="changeMaxStart()" value="2020-11-23"></td>
+                </div>
+                <div id="date_div_end">
+                    Assay Ends:<br/>
+                    Min Date <input type="date" id="minDateInputEnd" name="minDateInputEnd" onchange="changeMinEnd()" value="2018-11-23"></td>
+                    Max Date <input type="date" id="maxDateInputEnd" name="maxDateInputEnd" onchange="changeMaxEnd()" value="2020-11-23"></td>
+                </div>
+                <fieldset class="inline">
+                    <legend>Data location (uncheck to exclude):</legend>
+                    <div>
+                      <input type="checkbox" id="national" name="national" checked onchange="changeNational()">
+                      <label for="national">National</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" id="local" name="local" checked onchange="changeLocal()">
+                      <label for="local">Local (city or county)</label>
+                    </div>
+                </fieldset>
+
+                <fieldset class="inline">
+                    <legend>Data Source (uncheck to exclude):</legend>
+                    <div>
+                      <input type="checkbox" id="Age-specific-IFR" name="Age-specific-IFR" checked onchange="changeAgeIFR()">
+                      <label for="Age-specific-IFR">Age-specific-IFR</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" id="Population-IFR" name="Population-IFR" checked onchange="changePopulationIFR()">
+                      <label for="Population-IFR">Population-IFR</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" id="Age-specific-Prevalence" name="Age-specific-Prevalence" checked onchange="changeAgePrevalence()">
+                      <label for="Age-specific-Prevalence">Age-specific-Prevalence</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="Overall-Prevalence" name="Overall-Prevalence" checked onchange="changeOverallPrevalence()">
+                        <label for="Overall-Prevalence">Overall-Prevalence</label>
+                    </div>
+                </fieldset>
+                <fieldset class="inline">
+                    <legend>Bias risks (uncheck to exclude):</legend>
+                    <table>
+                        <tr>
+                            <th>Non Response</th>
+                            <th>Seroreversion</th> 
+                            <th>Death Undercount</th>
+                        </tr>
+                        <tr>
+
+                            <td class="risk_td"><input type="checkbox" id="NRR_high" name="NRR" checked onchange="changeNRR()">
+                            <label for="NRR_high">High</label></td>
+                            <td class="risk_td"><input type="checkbox" id="SR_high" name="SR" checked onchange="changeSR()">
+                            <label for="SR_high">High</label></td>
+                            <td class="risk_td"><input type="checkbox" id="DU_high" name="DU" checked onchange="changeDU()">
+                            <label for="DU_high">High</label></td>
+                        </tr>
+                        <tr>
+
+                            <td class="risk_td"><input type="checkbox" id="NRR_low" name="NRR" checked onchange="changeNRR()">
+                            <label for="NRR_low">Low </label></td>                        
+                            <td class="risk_td"><input type="checkbox" id="SR_low" name="SR" checked onchange="changeSR()">
+                            <label for="SR_low">Low </label></td>
+                            <td class="risk_td"><input type="checkbox" id="DU_low" name="DU" checked onchange="changeDU()">
+                            <label for="DU_low">Low </label></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td class="risk_td"><input type="checkbox" id="DU_NA" name="DU" checked onchange="changeDU()">
+                            <label for="DU_NA">NA  </label></td>
+                        </tr>
+
+                    </table>
+                </fieldset>
             </div>
-            <div id="date_div_start">
-                Assay Starts:<br/>
-                Min Date <input type="date" id="minDateInputStart" name="minDateInputStart" onchange="changeMinStart()" value="2018-11-23"></td>
-                Max Date <input type="date" id="maxDateInputStart" name="maxDateInputStart" onchange="changeMaxStart()" value="2020-11-23"></td>
+            <div id="studyInfo" class="studyInfo">
+                <p> Study Info </p>
+                Location: <span id = "LocationInfo">
             </div>
-            <div id="date_div_end">
-                Assay Ends:<br/>
-                Min Date <input type="date" id="minDateInputEnd" name="minDateInputEnd" onchange="changeMinEnd()" value="2018-11-23"></td>
-                Max Date <input type="date" id="maxDateInputEnd" name="maxDateInputEnd" onchange="changeMaxEnd()" value="2020-11-23"></td>
-            </div>
-            <fieldset class="inline">
-                <legend>Data location (uncheck to exclude):</legend>
-                <div>
-                  <input type="checkbox" id="national" name="national" checked onchange="changeNational()">
-                  <label for="national">National</label>
-                </div>
-                <div>
-                  <input type="checkbox" id="local" name="local" checked onchange="changeLocal()">
-                  <label for="local">Local (city or county)</label>
-                </div>
-            </fieldset>
-
-            <fieldset class="inline">
-                <legend>Data Source (uncheck to exclude):</legend>
-                <div>
-                  <input type="checkbox" id="Age-specific-IFR" name="Age-specific-IFR" checked onchange="changeAgeIFR()">
-                  <label for="Age-specific-IFR">Age-specific-IFR</label>
-                </div>
-                <div>
-                  <input type="checkbox" id="Population-IFR" name="Population-IFR" checked onchange="changePopulationIFR()">
-                  <label for="Population-IFR">Population-IFR</label>
-                </div>
-                <div>
-                  <input type="checkbox" id="Age-specific-Prevalence" name="Age-specific-Prevalence" checked onchange="changeAgePrevalence()">
-                  <label for="Age-specific-Prevalence">Age-specific-Prevalence</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="Overall-Prevalence" name="Overall-Prevalence" checked onchange="changeOverallPrevalence()">
-                    <label for="Overall-Prevalence">Overall-Prevalence</label>
-                </div>
-            </fieldset>
-            <fieldset class="inline">
-                <legend>Bias risks (uncheck to exclude):</legend>
-                <table>
-                    <tr>
-                        <th>Non Response</th>
-                        <th>Seroreversion</th> 
-                        <th>Death Undercount</th>
-                    </tr>
-                    <tr>
-
-                        <td class="risk_td"><input type="checkbox" id="NRR_high" name="NRR" checked onchange="changeNRR()">
-                        <label for="NRR_high">High</label></td>
-                        <td class="risk_td"><input type="checkbox" id="SR_high" name="SR" checked onchange="changeSR()">
-                        <label for="SR_high">High</label></td>
-                        <td class="risk_td"><input type="checkbox" id="DU_high" name="DU" checked onchange="changeDU()">
-                        <label for="DU_high">High</label></td>
-                    </tr>
-                    <tr>
-
-                        <td class="risk_td"><input type="checkbox" id="NRR_low" name="NRR" checked onchange="changeNRR()">
-                        <label for="NRR_low">Low </label></td>                        
-                        <td class="risk_td"><input type="checkbox" id="SR_low" name="SR" checked onchange="changeSR()">
-                        <label for="SR_low">Low </label></td>
-                        <td class="risk_td"><input type="checkbox" id="DU_low" name="DU" checked onchange="changeDU()">
-                        <label for="DU_low">Low </label></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td class="risk_td"><input type="checkbox" id="DU_NA" name="DU" checked onchange="changeDU()">
-                        <label for="DU_NA">NA  </label></td>
-                    </tr>
-
-                </table>
-            </fieldset>
         </div>
     </div>
     <div id="map"></div>
