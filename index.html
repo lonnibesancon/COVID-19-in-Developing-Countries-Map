@@ -77,6 +77,10 @@
         stroke: pink;
         stroke-width: 5px;
     }
+
+    .risk_td{
+        text-align: center;
+    }
 </style>
 </head>
   <body>
@@ -141,26 +145,26 @@
                     </tr>
                     <tr>
 
-                        <td><input type="checkbox" id="NRR_high" name="NRR" checked onchange="changeNRR()">
+                        <td class="risk_td"><input type="checkbox" id="NRR_high" name="NRR" checked onchange="changeNRR()">
                         <label for="NRR_high">High</label></td>
-                        <td><input type="checkbox" id="SR_high" name="SR" checked onchange="changeSR()">
+                        <td class="risk_td"><input type="checkbox" id="SR_high" name="SR" checked onchange="changeSR()">
                         <label for="SR_high">High</label></td>
-                        <td><input type="checkbox" id="DU_high" name="DU" checked onchange="changeDU()">
+                        <td class="risk_td"><input type="checkbox" id="DU_high" name="DU" checked onchange="changeDU()">
                         <label for="DU_high">High</label></td>
                     </tr>
                     <tr>
 
-                        <td><input type="checkbox" id="NRR_low" name="NRR" checked onchange="changeNRR()">
+                        <td class="risk_td"><input type="checkbox" id="NRR_low" name="NRR" checked onchange="changeNRR()">
                         <label for="NRR_low">Low</label></td>                        
-                        <td><input type="checkbox" id="SR_low" name="SR" checked onchange="changeSR()">
+                        <td class="risk_td><input type="checkbox" id="SR_low" name="SR" checked onchange="changeSR()">
                         <label for="SR_low">Low</label></td>
-                        <td><input type="checkbox" id="DU_low" name="DU" checked onchange="changeDU()">
+                        <td class="risk_td"><input type="checkbox" id="DU_low" name="DU" checked onchange="changeDU()">
                         <label for="DU_low">Low</label></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td></td>
-                        <td><input type="checkbox" id="DU_NA" name="DU" checked onchange="changeDU()">
+                        <td class="risk_td"><input type="checkbox" id="DU_NA" name="DU" checked onchange="changeDU()">
                         <label for="DU_NA">NA</label></td>
                     </tr>
 
@@ -420,7 +424,7 @@
         function filterRisk(elem){
             elem = elem.properties
 
-            return (checkSingleBiasRisk(elem,include_DU,"death_undercount_risk"))
+            return (checkSingleBiasRisk(elem,include_DU,"death_undercount_risk") & checkSingleBiasRisk(elem,include_DU,"death_undercount_risk"))
         }
 
         function filterData(){
