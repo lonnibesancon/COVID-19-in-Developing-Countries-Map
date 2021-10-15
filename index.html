@@ -423,8 +423,8 @@
         //Returns false if the element is not within the wanted risk
         function filterRisk(elem){
             elem = elem.properties
-
-            return (checkSingleBiasRisk(elem,include_DU,"death_undercount_risk") & checkSingleBiasRisk(elem,include_DU,"death_undercount_risk"))
+            let value = checkSingleBiasRisk(elem,include_DU,"death_undercount_risk") & checkSingleBiasRisk(elem,include_SR,"seroreversion_risk") & checkSingleBiasRisk(elem,include_NRR,"non_response_risk") 
+            return ( )
         }
 
         function filterData(){
