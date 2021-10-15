@@ -132,7 +132,7 @@
                 </div>
             </fieldset>
             <fieldset class="inline">
-                <legend>Bias risks(uncheck to exclude):</legend>
+                <legend>Bias risks (uncheck to exclude):</legend>
                 <table>
                     <tr>
                         <th>Non Response</th>
@@ -238,7 +238,7 @@
 
         var include_DU = [true, true, true]   //We include both high, low, and NA
         var include_SR = [true, true]         //We include both high and low
-        var include_high_NRR = [true, true]   //We include both high and low
+        var include_NRR = [true, true]   //We include both high and low
 
         const encode_national_studies = false
 
@@ -304,7 +304,23 @@
         function changeNRR(){
             var radios = document.getElementsByName("NRR");
             for (var i = 0 ; i < radios.length ; i++) {
-               include_high_NRR[i] = radios[i].checked
+               include_NRR[i] = radios[i].checked
+            }
+            filterData()
+        }
+
+        function changeDU(){
+            var radios = document.getElementsByName("DU");
+            for (var i = 0 ; i < radios.length ; i++) {
+               include_DU[i] = radios[i].checked
+            }
+            filterData()
+        }
+
+        function changeSR(){
+            var radios = document.getElementsByName("SR");
+            for (var i = 0 ; i < radios.length ; i++) {
+               include_SR[i] = radios[i].checked
             }
             filterData()
         }
