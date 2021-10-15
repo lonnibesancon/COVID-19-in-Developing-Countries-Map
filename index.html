@@ -756,7 +756,7 @@
                 ifr_info = ""+d.properties.IFR_mean+ " ["+d.properties.IFR_p025+" ; "+d.properties.IFR_p975+" ]"
             }
             
-            document.getElementById("locationInfo").text = location
+            document.getElementById("locationInfo").textContent = location
             document.getElementById("studyInfo").text = d.properties.study_info
 
             /*Tooltip
