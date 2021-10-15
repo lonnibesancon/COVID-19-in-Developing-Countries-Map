@@ -409,6 +409,7 @@
             let values = ["High","Low","NA"]
             for (var i = 0 ; i < risk_include_values.length ; i++){
                 if(risk_include_values[i] == false && elem[risk_name] == values[i]){
+                    console.dir(elem)
                     return false
                 }
             }
