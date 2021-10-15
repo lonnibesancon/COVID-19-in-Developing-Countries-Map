@@ -109,6 +109,59 @@
     </div>
     <div id="controls">
         <div id="inclusion">
+            
+            <!--
+            <fieldset class="inline">
+                <legend>Seroreversion risk (uncheck to exclude):</legend>
+                <div>
+                  <input type="checkbox" id="SR_high" name="SR" checked onchange="changeSR()">
+                  <label for="Age-specific-IFR">High</label>
+                </div>
+                <div>
+                  <input type="checkbox" id="SR_low" name="SR" checked onchange="changeSR()">
+                  <label for="Population-IFR">Low</label>
+                </div>
+            </fieldset>
+            <fieldset class="inline">
+                <legend>Death undercount risk (uncheck to exclude):</legend>
+                <div>
+                  <input type="checkbox" id="DU_high" name="DU" checked onchange="changeDU()">
+                  <label for="DU_high">High</label>
+                </div>
+                <div>
+                  <input type="checkbox" id="DU_low" name="DU" checked onchange="changeDU()">
+                  <label for="DU_low">Low</label>
+                </div>
+                <div>
+                  <input type="checkbox" id="DU_NA" name="DU" checked onchange="changeDU()">
+                  <label for="DU_NA">NA</label>
+                </div>
+            </fieldset>
+            -->
+
+            <!--
+            <fieldset class="inline">
+                <legend>Prevalence distribution accross ages (uncheck to exclude):</legend>
+                <div>
+                  <input type="checkbox" id="uniform" name="uniform" checked onchange="changeUniform()">
+                  <label for="uniform">Uniform Prevalence By Age</label>
+                </div>
+                <div>
+                  <input type="checkbox" id="declining" name="declining" checked onchange="changeDecreasing()">
+                  <label for="declining">Declining Prevalence By Age</label>
+                </div>
+                <div>
+                  <input type="checkbox" id="increasing" name="increasing" checked onchange="changeIncreasing()">
+                  <label for="increasing">Increasing Prevalence By Age</label>
+                </div>
+            </fieldset>
+            -->
+        </div>
+    </div>
+    <div height="600" class="float-container">
+
+        <div class="float-child"><svg width="400" height="600", id="forest_plot"></svg></div>
+        <div class="float-child">
             <div id="data_to_show">
                 Visualize
                     <select name="encodeVariable" id="encodeVariable" onchange="changeEncodeVariable()"> 
@@ -188,59 +241,6 @@
 
                 </table>
             </fieldset>
-            <!--
-            <fieldset class="inline">
-                <legend>Seroreversion risk (uncheck to exclude):</legend>
-                <div>
-                  <input type="checkbox" id="SR_high" name="SR" checked onchange="changeSR()">
-                  <label for="Age-specific-IFR">High</label>
-                </div>
-                <div>
-                  <input type="checkbox" id="SR_low" name="SR" checked onchange="changeSR()">
-                  <label for="Population-IFR">Low</label>
-                </div>
-            </fieldset>
-            <fieldset class="inline">
-                <legend>Death undercount risk (uncheck to exclude):</legend>
-                <div>
-                  <input type="checkbox" id="DU_high" name="DU" checked onchange="changeDU()">
-                  <label for="DU_high">High</label>
-                </div>
-                <div>
-                  <input type="checkbox" id="DU_low" name="DU" checked onchange="changeDU()">
-                  <label for="DU_low">Low</label>
-                </div>
-                <div>
-                  <input type="checkbox" id="DU_NA" name="DU" checked onchange="changeDU()">
-                  <label for="DU_NA">NA</label>
-                </div>
-            </fieldset>
-            -->
-
-            <!--
-            <fieldset class="inline">
-                <legend>Prevalence distribution accross ages (uncheck to exclude):</legend>
-                <div>
-                  <input type="checkbox" id="uniform" name="uniform" checked onchange="changeUniform()">
-                  <label for="uniform">Uniform Prevalence By Age</label>
-                </div>
-                <div>
-                  <input type="checkbox" id="declining" name="declining" checked onchange="changeDecreasing()">
-                  <label for="declining">Declining Prevalence By Age</label>
-                </div>
-                <div>
-                  <input type="checkbox" id="increasing" name="increasing" checked onchange="changeIncreasing()">
-                  <label for="increasing">Increasing Prevalence By Age</label>
-                </div>
-            </fieldset>
-            -->
-        </div>
-    </div>
-    <div height="600" class="float-container">
-
-        <div class="float-child"><svg width="400" height="600", id="forest_plot"></svg></div>
-        <div class="float-child">
-            <p>UI TEST</p>
         </div>
     </div>
     <div id="map"></div>
