@@ -156,8 +156,10 @@
         border: 3px solid #fff;
     }
     #forest_plot{
-        height: 400em;
-        width: 420em;
+        height: 400px;
+        width: 420px;
+        min-width: 420px;
+        min-height: 400px;
 
     }
 
@@ -936,6 +938,7 @@
         var height = (forest_plot.attr("height") - 2*margin);
         var width = (forest_plot.attr("width") - 2*margin)
 
+        console.dir(forest_plot)
         console.log("height forest plot = "+height)
         console.log("width forest plot = "+width)
 
