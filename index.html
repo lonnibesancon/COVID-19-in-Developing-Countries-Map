@@ -1069,6 +1069,8 @@
         selection = d3.select(id_to_select)
         selection.classed('hovered', true)
 
+        let h = document.getElementById("#forest_plot").attr("height")
+        console.log("h = "+h)
 
         var location
         if(datum.properties.location_label == "National Study"){
