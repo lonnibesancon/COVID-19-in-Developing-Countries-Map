@@ -853,7 +853,7 @@
             document.getElementById("IFRInfo").textContent = ifr_info
             document.getElementById("assayInfo").textContent = d.properties.assay_name
             document.getElementById("datesInfo").textContent = dates
-            document.getElementById("sourcesInfo").innerHTML = datum.properties.source + links
+            document.getElementById("sourcesInfo").innerHTML = datum.properties.source +"<br/>"+ links
             //d3.select("#sourcesInfo").html = d.properties.source + links
 
             /*Tooltip
@@ -1113,7 +1113,7 @@
         document.getElementById("IFRInfo").textContent = ifr_info
         document.getElementById("assayInfo").textContent = datum.properties.assay_name
         document.getElementById("datesInfo").textContent = dates
-        document.getElementById("sourcesInfo").innerHTML = datum.properties.source + links
+        document.getElementById("sourcesInfo").innerHTML = datum.properties.source +"<br/>"+ links
         //d3.select("#sourcesInfo").html = datum.properties.source + links
         
     }
