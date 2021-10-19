@@ -812,12 +812,12 @@
                 .style("padding", "5px")
                 .style("position","absolute")
         
-        var mouseClickData = function(d) {
+        /*var mouseClickData = function(d) {
 
             clickedData = true ;
             //Tooltip.style("opacity", 1)
-            /*tooltip_x = (d3.event.pageX+10) + "px"
-            tooltip_y = (d3.event.pageY-offsetYTooltip) + "px"*/
+            //tooltip_x = (d3.event.pageX+10) + "px"
+            //tooltip_y = (d3.event.pageY-offsetYTooltip) + "px"
 
             var projection = project(d.geometry.coordinates)
             tooltip_ref_point_coordinates = d.geometry.coordinates ;
@@ -856,11 +856,11 @@
             document.getElementById("sourcesInfo").innerHTML = datum.properties.source +"<br/>"+ links
             //d3.select("#sourcesInfo").html = d.properties.source + links
 
-            /*Tooltip
+            //Tooltip
             .html("Location:<br>"+location + "<br><br>Type:<br>" + d.properties.study_info + "<br><br>Seroprevalence: " + seroprevalence_info+ "<br>IFR: "+ifr_info+"<br><br>Assay name:<br>"+d.properties.assay_name + "<br><br>Dates:<br>" + dates + "<br><br>Source:<br>"+ d.properties.source + links)
             .style("left", tooltip_x)
-            .style("top", tooltip_y)*/
-        }
+            .style("top", tooltip_y)
+        }*/
         
         
         var mouseClickMap = function(d) {
