@@ -833,7 +833,7 @@
             }
 
             let dates = toShortString(d.properties.start_date) + " -- " + toShortString(d.properties.end_date)
-            let links = ". "
+            let links = ""
             if(d.properties.link_one != ''){
                 links += "<a href='"+d.properties.link_one+"'>Link1</a>"
             }
@@ -1093,7 +1093,7 @@
         }
 
         let dates = toShortString(datum.properties.start_date) + " -- " + toShortString(datum.properties.end_date)
-        let links = ". "
+        let links = ""
         if(datum.properties.link_one != ''){
             links += "<a href='"+datum.properties.link_one+"'>Link1</a>"
         }
