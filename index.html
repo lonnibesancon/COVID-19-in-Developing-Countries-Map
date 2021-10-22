@@ -1101,7 +1101,7 @@
             links += "; <a href='"+datum.properties.link_two+"'>Link2 </a>"
         }
 
-        let seroprevalence_info = ""+datum.properties.mean+ " ["+datum.properties.p025+" ; "+datum.properties.p975+" ]"
+        let seroprevalence_info = ""+parseFloat(datum.properties.mean).toFixed(2)+ " ["+parseFloat(datum.properties.p025).toFixed(2)+" ; "+parseFloat(datum.properties.p975).toFixed(2)+" ]"
         let ifr_info = "NA"
         if(datum.properties.IFR_mean != null ){
             ifr_info = ""+datum.properties.IFR_mean+ " ["+datum.properties.IFR_p025+" ; "+datum.properties.IFR_p975+" ]"
