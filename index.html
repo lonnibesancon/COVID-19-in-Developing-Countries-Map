@@ -350,7 +350,7 @@
                             </tr>
                         </table>
                     </div>
-
+                    <div id="right_legend"></div>
 
             </div>
             <div id="bottom_right">
@@ -1212,7 +1212,7 @@
         var height_rectangle = scale*100
         var x_extra_offset = scale*30
 
-        var legendDiv = d3.select("#legend_right")
+        var legendDiv = d3.select("#right_legend")
 
         var gradient = legendSvg.append("defs").append("linearGradient")
             .attr("id", "mygrad")//id of the gradient
