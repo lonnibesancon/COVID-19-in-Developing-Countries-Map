@@ -1182,6 +1182,7 @@
         var data = [age_specific_ifr,population_ifr,age_specific_prevalence,overall_prevalence]
         let id= "#legend_shape"
         var scale = 0.75
+        var font_size_sub = "1em"
 
         for (var i=0 ; i < data.length ; i ++){
             let id_to_select = id+(i+1)
@@ -1215,7 +1216,7 @@
         var legendDiv = d3.select("#right_legend")
 
         var legendSvg = legendDiv.append("svg")
-        
+
         var gradient = legendSvg.append("defs").append("linearGradient")
             .attr("id", "mygrad")//id of the gradient
             .attr("x1", "0%")
