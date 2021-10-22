@@ -1204,6 +1204,67 @@
 
         }
 
+        var legend2_x_start = scale*300
+
+        //Now we want to make the continuous scale legend
+        
+        var width_rectangle = scale*30
+        var height_rectangle = scale*100
+        var x_extra_offset = scale*30
+
+        var legendDiv = d3.select("#legend_right")
+
+        var gradient = legendSvg.append("defs").append("linearGradient")
+            .attr("id", "mygrad")//id of the gradient
+            .attr("x1", "0%")
+            .attr("x2", "0%")
+            .attr("y1", "0%")
+            .attr("y2", "100%")//since its a vertical linear gradient 
+            ;
+            gradient.append("stop")
+            .attr("offset", "0%")
+            .style("stop-color", color1)
+            .style("stop-opacity", 1)
+
+            gradient.append("stop")
+            .attr("offset", "100%")
+            .style("stop-color", color2)
+            .style("stop-opacity", 1)
+
+        legendSvg.append("text")
+            .attr("x",scale*(legend2_x_start))
+            .attr("y",scale*50)
+            .attr("id","gradient_legend")
+            .style('fill', '')
+            .text("Prevalence (in %)")
+            .attr("class","legend_text_sub legend_text")
+            .style("fill",text_color)
+            .style("font-size",font_size_sub);
+
+        legendSvg.append("rect")
+            .attr("width", width_rectangle)
+            .attr("height", height_rectangle)
+            .style("fill", "url(#mygrad)")
+            .attr("x",scale*(legend2_x_start+x_extra_offset))
+            .attr("y",scale*(y_offset+40))
+
+        legendSvg.append("text")
+            .attr("x",scale*(legend2_x_start+(width_rectangle/2)-7+x_extra_offset))
+            .attr("y",scale*(45-10+y_offset))
+            .text("0%")
+            .attr("class","legend_text")
+            .style("fill",text_color)
+            .style("font-size",font_size);
+
+        legendSvg.append("text")
+            .attr("x",scale*(legend2_x_start+(width_rectangle/2)-13+x_extra_offset)-10)
+            .attr("y",scale*(height_rectangle+80+y_offset))
+            .text(max_seroprevalence+"%")
+            .attr("id","legend_gradient_max")
+            .attr("class","legend_text")
+            .style("fill",text_color)
+            .style("font-size",font_size);
+
     }
 
     function createLegend(){
