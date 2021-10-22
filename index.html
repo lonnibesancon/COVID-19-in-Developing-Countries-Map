@@ -171,6 +171,24 @@
         min-height: 600px;
     }
 
+    #mapLegend{
+        display: inline-flex;
+        width: 100%;
+        height: 200px;
+        margin-top: 1px;
+        border: 1px solid #fff;
+    }
+
+    #legend_left{
+        width: 51%;
+        border: 1px solid #00f;
+        height: 100%;
+    }
+    #legend_right{
+        width: 100%;
+        border: 1px solid #0f0;
+    }
+
 </style>
 </head>
   <body>
@@ -306,7 +324,31 @@
                         </tr>
                     </table>
                 </div>
-                <div id="mapLegend" class="studyInfo"></div>
+                <div id="mapLegend">
+                    <p class="header">Legend</p>
+                    <div id="left_legend">
+                        Study type
+                        <table>
+                            <tr>
+                                <td id="legend_shape1"></td>
+                                <td>Age Specific IFR</td>
+                            </tr>
+                            <tr>
+                                <td id="legend_shape2"></td>
+                                <td>Population IFR</td>
+                            </tr>
+                            <tr>
+                                <td id="legend_shape3"></td>
+                                <td>Age Specific Prevalence</td>
+                            </tr>
+                            <tr>
+                                <td id="legend_shape4"></td>
+                                <td>Age Specific Prevalence</td>
+                            </tr>
+                        </table>
+                    </div>
+
+
             </div>
             <div id="bottom_right">
                 <div id="map"></div>
@@ -1129,6 +1171,30 @@
         id_to_select = "#b_"+id
         selection = d3.select(id_to_select)
         selection.classed('hovered', false)
+
+    }
+
+    function createLegendFinal(){
+
+        var data = [age_specific_ifr,population_ifr,age_specific_prevalence,overall_prevalence]
+        let id= "legend_shape"
+
+        for var(i=0 ; i < data.length ; i ++){
+            let id_to_select = id+(i+1)
+            d3.select(id_to_select).append("path")
+            .attr("class", "legend_dots")
+            .style("fill", function(){
+                return(colorScale(20))
+            })
+            .attr("d", d3.symbol()
+                .size(scale*200)
+                .type(function(){ 
+                    return(getShape(data[i]))
+                })
+
+            )
+
+        }
 
     }
 
