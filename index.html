@@ -1196,6 +1196,7 @@
             .attr("d", d3.symbol()
                 .size(scale*1000)
                 .type(function(){ 
+                    console.log("data[i] = "+data[i])
                     return(getShape(data[i]))
                 })
 
