@@ -1184,6 +1184,7 @@
 
         for (var i=0 ; i < data.length ; i ++){
             let id_to_select = id+(i+1)
+            console.log("id_to_select = "+id_to_select)
             let select = d3.select(id_to_select)
             console.dir(select)
             select.append("path")
