@@ -1214,6 +1214,8 @@
 
         var legendDiv = d3.select("#right_legend")
 
+        var legendSvg = legendDiv.append("svg")
+        
         var gradient = legendSvg.append("defs").append("linearGradient")
             .attr("id", "mygrad")//id of the gradient
             .attr("x1", "0%")
