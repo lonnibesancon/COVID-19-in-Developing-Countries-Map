@@ -326,8 +326,10 @@
                 </div>
                 <div id="mapLegend">
                     <p class="header">Legend</p>
+                    <br/>
                     <div id="left_legend">
                         Study type
+                        <br/>
                         <table>
                             <tr>
                                 <td id="legend_shape1"></td>
@@ -933,7 +935,7 @@
                 max_seroprevalence= d3.max(initial_data, function(d) {  return +d["mean"]; });
                 max_IFR= d3.max(initial_data, function(d) {  return +d["IFR_mean"]; });
                 colorScale.domain([0,max_seroprevalence]);
-                createLegend()
+                createLegendFinal()
                 createMap()
                 createForestPlot()
                 makeGeoJson(data)
