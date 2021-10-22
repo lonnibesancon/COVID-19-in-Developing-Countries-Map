@@ -1101,10 +1101,10 @@
             links += "; <a href='"+datum.properties.link_two+"'>Link2 </a>"
         }
 
-        let seroprevalence_info = ""+parseFloat(datum.properties.mean).toFixed(2)+ " ["+parseFloat(datum.properties.p025).toFixed(2)+" ; "+parseFloat(datum.properties.p975).toFixed(2)+" ]"
+        let seroprevalence_info = ""+parseFloat(datum.properties.mean).toFixed(2)+ " ["+parseFloat(datum.properties.p025).toFixed(2)+" ; "+parseFloat(datum.properties.p975).toFixed(2)+"]"
         let ifr_info = "NA"
         if(datum.properties.IFR_mean != null ){
-            ifr_info = ""+datum.properties.IFR_mean+ " ["+datum.properties.IFR_p025+" ; "+datum.properties.IFR_p975+" ]"
+            ifr_info = ""+parseFloat(datum.properties.IFR_mean).toFixed(2)+ " ["+parseFloat(datum.properties.IFR_p025).toFixed(2)+" ; "+parseFloat(datum.properties.IFR_p975).toFixed(2)+"]"
         }
         
         document.getElementById("locationInfo").textContent = location
