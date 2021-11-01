@@ -855,7 +855,7 @@
             colorScale.domain([0,max]);
             forest_valueScale.domain([0,max])
 
-            max = parseFloat("max").toFixed(2)
+            max = parseFloat(max).toFixed(2)
             tmp.textContent = ""+max+"%"
         }
 
@@ -1563,19 +1563,15 @@
         function getShape(input){
             if(display_study_type){
                 if (input == age_specific_ifr){
-                    console.log("Circle")
                     return d3.symbolCircle;
                 }
                 if(input == population_ifr){
-                    console.log("Square")
                     return d3.symbolSquare;
                 }
                 if(input == age_specific_prevalence){
-                    console.log("Diamond")
                     return d3.symbolDiamond;
                 }
                 if(input == overall_prevalence){
-                    console.log("Cross")
                     return d3.symbolCross;
                 }
                 console.log("Error on study type")
