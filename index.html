@@ -187,8 +187,7 @@
         height: 100%;
     }
     #right_legend{
-        width: 100%;
-        display: inline-flex;
+        width: 30%;
         border: 1px solid #0f0;
     }
     .legend_dots{
@@ -197,6 +196,10 @@
         heigh: 100%;
         width: 100%;
         max-width: 100%;
+    }
+    #gradient_legend_svg{
+        display: block;
+        margin: auto;
     }
 
 </style>
@@ -1234,7 +1237,7 @@
 
         var legendSvg = legendDiv.append("svg")
 
-        legendSvg.style("display","block").style("margin","auto")
+        //legendSvg.style("display","block").style("margin","auto")
 
         var y_offset = 20
 
