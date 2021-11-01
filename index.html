@@ -351,7 +351,10 @@
                             </tr>
                         </table>
                     </div>
-                    <div id="right_legend"></div>
+                    <div id="right_legend">
+                        <center><span id="gradient_legend">Seroprevalence</span></center>
+
+                    </div>
 
             </div>
             <div id="bottom_right">
@@ -1219,7 +1222,7 @@
 
         var legendSvg = legendDiv.append("svg")
 
-        var y_offset = 0, font_size
+        var y_offset = 20
 
         var gradient = legendSvg.append("defs").append("linearGradient")
             .attr("id", "mygrad")//id of the gradient
@@ -1238,7 +1241,7 @@
             .style("stop-color", color2)
             .style("stop-opacity", 1)
 
-        legendSvg.append("text")
+        /*legendSvg.append("text")
             .attr("x",scale*(legend2_x_start))
             .attr("y",scale*50)
             .attr("id","gradient_legend")
@@ -1246,7 +1249,7 @@
             .text("Prevalence (in %)")
             .attr("class","legend_text_sub legend_text")
             .style("fill",text_color)
-            .style("font-size",font_size_sub);
+            .style("font-size",font_size_sub);*/
 
         legendSvg.append("rect")
             .attr("width", width_rectangle)
