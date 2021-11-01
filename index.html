@@ -1238,6 +1238,8 @@
 
         var y_offset = 20
 
+        let max_text = parseFloat(max_seroprevalence).toFixed(2)
+
         var gradient = legendSvg.append("defs").append("linearGradient")
             .attr("id", "mygrad")//id of the gradient
             .attr("x1", "0%")
@@ -1281,9 +1283,9 @@
             .style("font-size",font_size);
 
         legendSvg.append("text")
-            .attr("x",scale*(legend2_x_start+(width_rectangle/2)-13+x_extra_offset)-10)
+            .attr("x",scale*(legend2_x_start+(width_rectangle/2)+x_extra_offset)-10)
             .attr("y",scale*(height_rectangle+80+y_offset))
-            .text(max_seroprevalence+"%")
+            .text(max_text+"%")
             .attr("id","legend_gradient_max")
             .attr("class","legend_text")
             .style("fill",text_color)
