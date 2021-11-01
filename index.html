@@ -194,6 +194,7 @@
     .legend_dots{
         display: block;
         max-height: 100%;
+        heigh: 100%;
         width: 100%;
         max-width: 100%;
     }
@@ -1209,7 +1210,7 @@
                 return(colorScale(20))
             })
             .attr("d", d3.symbol()
-                .size(scale*1000)
+                .size(scale*3)
                 .type(function(){ 
                     console.log("data[i] = "+data[i])
                     return(getShape(data[i]))
