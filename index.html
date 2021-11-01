@@ -181,7 +181,7 @@
 
     #legend_left{
         display: inline-flex;
-        width: 51%;
+        width: 71%;
         border: 1px solid #00f;
         height: 100%;
     }
@@ -353,7 +353,7 @@
                     </div>
                     <div id="right_legend">
                         <center><span id="gradient_legend">Seroprevalence</span></center>
-
+                        <center><div id="gradient_legend_svg"></div></center>
                     </div>
                 </div>
 
@@ -1219,7 +1219,7 @@
         var height_rectangle = scale*100
         var x_extra_offset = scale*30
 
-        var legendDiv = d3.select("#right_legend")
+        var legendDiv = d3.select("#gradient_legend_svg")
 
         var legendSvg = legendDiv.append("svg")
 
