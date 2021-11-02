@@ -1223,7 +1223,7 @@
                 return(colorScale(20))
             })
             .attr("d", d3.symbol()
-                .size(scale*3)
+                .size(scale)
                 .type(function(){ 
                     console.log("data[i] = "+data[i])
                     console.log("getShape = "+getShape(data[i]))
