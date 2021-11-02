@@ -125,17 +125,24 @@
     #studyInfo{
         border: 3px solid #000;
         float: bottom;
-        min-height: 300px;
+        min-height: 350px;
     }
 
 
 
     .header{
         margin: 0.3em;
+        padding: 0.1em;
         margin-bottom: 0.7em;
         text-align: center;
-        font-size: 1.3 em;
+        font-size: 1.3em;
         width: 100%;
+    }
+
+    .sub_header{
+        margin-bottom: 0.3em;
+        padding: 0.1em;
+        font-size: 1.07em;
     }
 
     #main{
@@ -248,7 +255,7 @@
                             <select name="encodeVariable" id="encodeVariable" onchange="changeEncodeVariable()"> 
                             </select> 
                     </div>
-                    Assay Starts:<br/>
+                    <span class="sub_header">Assay Starts:</span><br/>
                     <div id="date_div_start" class="input_ui">
                         <table>
                             <tr>
@@ -261,12 +268,12 @@
                             </tr>
                         </table>
                     </div>
-                    Assay Ends:<br/>
+                    <span class="sub_header">Assay Ends:</span><br/>
                     <div id="date_div_end" class="input_ui">
                         Min Date <input type="date" id="minDateInputEnd" name="minDateInputEnd" onchange="changeMinEnd()" value="2018-11-23"><br/>
                         Max Date <input type="date" id="maxDateInputEnd" name="maxDateInputEnd" onchange="changeMaxEnd()" value="2020-11-23"><br/>
                     </div>
-                    Data location (uncheck to exclude):
+                    <span class="sub_header">Data location (uncheck to exclude):</span>
                     <fieldset class="inline input_ui">
                         <!--<legend>Data location (uncheck to exclude):</legend>-->
                         <div>
@@ -279,7 +286,7 @@
                         </div>
                     </fieldset>
 
-                    Data Source (uncheck to exclude):
+                    <span class="sub_header">Data Source (uncheck to exclude):</span>
                     <fieldset class="inline input_ui">
                         <!--<legend>Data Source (uncheck to exclude):</legend>-->
                         <div>
@@ -299,7 +306,7 @@
                             <label for="Overall-Prevalence">Overall-Prevalence</label>
                         </div>
                     </fieldset>
-                    Bias risks (uncheck to exclude):
+                    <span class="sub_header">Bias risks (uncheck to exclude):</span>
                     <fieldset class="inline input_ui">
                         <!--<legend>Bias risks (uncheck to exclude):</legend>-->
                         <table style="width: 90%">
@@ -377,8 +384,7 @@
                     <p class="header">Legend:</p>
                     <div id="mapLegend">
                         <div id="left_legend">
-                            Study type
-                            <br/>
+                            <span class="sub_header">Study type</span>
                             <table>
                                 <tr>
                                     <td id="legend_shape1"></td>
