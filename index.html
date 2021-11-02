@@ -102,6 +102,8 @@
 
     .risk_td{
         padding-left: 6%;
+        padding-right: 6%;
+
     }
 
     .float-container {
@@ -244,13 +246,13 @@
                             <select name="encodeVariable" id="encodeVariable" onchange="changeEncodeVariable()"> 
                             </select> 
                     </div>
+                    Assay Starts:<br/>
                     <div id="date_div_start" class="input_ui">
-                        Assay Starts:<br/>
                         Min Date <input type="date" id="minDateInputStart" name="minDateInputStart" onchange="changeMinStart()" value="2018-11-23"><br/>
                         Max Date <input type="date" id="maxDateInputStart" name="maxDateInputStart" onchange="changeMaxStart()" value="2020-11-23"><br/>
                     </div>
+                    Assay Ends:<br/>
                     <div id="date_div_end" class="input_ui">
-                        Assay Ends:<br/>
                         Min Date <input type="date" id="minDateInputEnd" name="minDateInputEnd" onchange="changeMinEnd()" value="2018-11-23"><br/>
                         Max Date <input type="date" id="maxDateInputEnd" name="maxDateInputEnd" onchange="changeMaxEnd()" value="2020-11-23"><br/>
                     </div>
@@ -292,9 +294,9 @@
                         <!--<legend>Bias risks (uncheck to exclude):</legend>-->
                         <table>
                             <tr>
-                                <th>Non Response</th>
-                                <th>Seroreversion</th> 
-                                <th>Death Undercount</th>
+                                <th class="risk_td">Non Response</th>
+                                <th class="risk_td">Seroreversion</th> 
+                                <th class="risk_td">Death Undercount</th>
                             </tr>
                             <tr>
 
