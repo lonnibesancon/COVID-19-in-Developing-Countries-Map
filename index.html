@@ -1295,7 +1295,7 @@
         
         var width_rectangle = scale*30
         var height_rectangle = scale*100
-        var x_extra_offset = scale*20
+        var x_extra_offset = scale*18
 
         var legendDiv = d3.select("#gradient_legend_svg")
 
@@ -1340,7 +1340,7 @@
             .attr("height", height_rectangle)
             .style("fill", "url(#mygrad)")
             .attr("x",scale*(legend2_x_start+x_extra_offset))
-            .attr("y",scale*(y_offset+40))
+            .attr("y",scale*(y_offset+60))
 
         legendSvg.append("text")
             .attr("x",scale*(legend2_x_start+(width_rectangle/2)+x_extra_offset))
