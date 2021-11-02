@@ -1210,7 +1210,7 @@
         var scale = 0.75
         var font_size_sub = (1.1*scale)+"em"
         var font_size = scale+"em"
-        var draw_size = 60
+        var draw_size = 100
 
         for (var i=0 ; i < data.length ; i ++){
             console.log("Data #"+i)
@@ -1224,8 +1224,7 @@
                 .append("path")
                 .attr("class", "legend_dots")
                 .style("fill", function(){
-                    //return(colorScale(20))
-                    return("black")
+                    return(colorScale(20))
                 })
                 .attr("d", d3.symbol()
                     .size(draw_size)
