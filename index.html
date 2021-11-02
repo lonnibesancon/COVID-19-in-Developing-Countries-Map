@@ -1217,20 +1217,21 @@
             console.log("id_to_select = "+id_to_select)
             let select = d3.select(id_to_select)
             console.dir(select)
-            select.append("svg").append("path")
-            .attr("class", "legend_dots")
-            .style("fill", function(){
-                return(colorScale(20))
-            })
-            .attr("d", d3.symbol()
-                .size(scale*10)
-                .type(function(){ 
-                    console.log("data[i] = "+data[i])
-                    console.log("getShape = "+getShape(data[i]))
-                    return(getShape(data[i]))
+            select.append("g").
+            append("path")
+                .attr("class", "legend_dots")
+                .style("fill", function(){
+                    return(colorScale(20))
                 })
+                .attr("d", d3.symbol()
+                    .size(scale*10)
+                    .type(function(){ 
+                        console.log("data[i] = "+data[i])
+                        console.log("getShape = "+getShape(data[i]))
+                        return(getShape(data[i]))
+                    })
 
-            )
+                )
 
         }
 
