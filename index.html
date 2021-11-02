@@ -47,7 +47,6 @@
     #map{
         height: 100%;
         width: 100%;
-        margin-top: 1em;
     }
 
     #map_container {
@@ -250,8 +249,16 @@
                     </div>
                     Assay Starts:<br/>
                     <div id="date_div_start" class="input_ui">
-                        Min Date <input type="date" id="minDateInputStart" name="minDateInputStart" onchange="changeMinStart()" value="2018-11-23"><br/>
-                        Max Date <input type="date" id="maxDateInputStart" name="maxDateInputStart" onchange="changeMaxStart()" value="2020-11-23"><br/>
+                        <table>
+                            <tr>
+                                <td>Min Date</td> 
+                                <td><input type="date" id="minDateInputStart" name="minDateInputStart" onchange="changeMinStart()" value="2018-11-23"></td>
+                            </tr>
+                            <tr>
+                                <td>Max Date</td> 
+                                <td><input type="date" id="maxDateInputStart" name="maxDateInputStart" onchange="changeMaxStart()" value="2020-11-23"><br/></td>
+                            </tr>
+                        </table>
                     </div>
                     Assay Ends:<br/>
                     <div id="date_div_end" class="input_ui">
