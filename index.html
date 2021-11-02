@@ -1059,19 +1059,20 @@
         forest_plot.append("g")
             .attr("class","axis")
             .attr("id","forest_x_axis")
-            .attr("transform", "translate(0," + height + ")")
+            .attr("transform", "translate("+margin"," + height + ")")
             .call(d3.axisBottom(forest_valueScale));
 
         // Add the Y Axis
         forest_plot.append("g")
             .attr("class","axis")
-            .attr("transform", "translate("+(-margin/2)+",0)")
+            .attr("transform", "translate("+margin+",0)")
             .transition().duration(3000)
             .call(d3.axisLeft(forest_positionScale));
 
     }
 
     function createForest(input_data){
+        var margin = 10
         var forest = forest_plot.selectAll(".forest_dot")
             .data(input_data, function(d) { return d.properties.location_id; });
 
@@ -1109,6 +1110,7 @@
                 else{
                     x = forest_valueScale(d.properties.IFR_mean)
                 }
+                x += margin
                 let coordinates = ""+x+","+y
                 return "translate("+coordinates+")"
             })
