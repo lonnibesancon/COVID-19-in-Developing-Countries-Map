@@ -828,6 +828,8 @@
 
         var map_style = "positron"
 
+        var transition_time = 700
+
         let style_link,legend_color,text_color,stroke_color
 
         if(map_style == "positron"){
@@ -876,7 +878,7 @@
             console.log("Axis print")
             console.dir(d3.selectAll("#forest_x_axis"))
             d3.selectAll("#forest_x_axis")
-                .transition().duration(3000)
+                .transition().duration(transition_time)
                 .call(d3.axisBottom(forest_valueScale));
         }
 
@@ -1069,7 +1071,7 @@
             .on("mouseout", function(d){handleMouseOut(d,""+this.id)})
         .merge(forest)
             .transition()
-            .duration(700)
+            .duration(transition_time)
             .attr("d", d3.symbol()
                 .size(40)
                 .type(function(d) { 
@@ -1113,7 +1115,7 @@
             .on("mouseout", function(d){handleMouseOut(d,""+this.id)})
             .merge(forest_bars)
             .transition()
-            .duration(700)
+            .duration(transition_time)
             .attr("y", function(d,i) { return (forest_positionScale(i)-1); })
             .attr("x", function(d,i) { 
                 let x
