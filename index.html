@@ -209,6 +209,9 @@
         margin: auto;
         width: 60px;
     }
+    .legend_text{
+        font-size: 1em;
+    }
 
 </style>
 </head>
@@ -316,32 +319,32 @@
                     <p class="header"> Study Info </p>
                     <table>
                         <tr>
-                            <td>Location:</td>
-                            <td id="locationInfo"></td>
+                            <td class="legend_text">Location:</td>
+                            <td id="locationInfo" class="legend_text"></td>
                         </tr>
                         <tr>
-                            <td>Type:</td>
-                            <td id="typeInfo"></td>
+                            <td class="legend_text">Type:</td>
+                            <td id="typeInfo" class="legend_text"></td>
                         </tr>
                         <tr>
-                            <td>Seroprevalence:</td>
-                            <td id="seroprevalenceInfo"></td>
+                            <td class="legend_text">Seroprevalence:</td>
+                            <td id="seroprevalenceInfo" class="legend_text"></td>
                         </tr>
                         <tr>
-                            <td>IFR:</td>
-                            <td id="IFRInfo"></td>
+                            <td class="legend_text">IFR:</td>
+                            <td id="IFRInfoclass="legend_text"" class="legend_text"></td>
                         </tr>
                         <tr>
-                            <td>Assay Name:</td>
-                            <td id="assayInfo"></td>
+                            <td class="legend_text">Assay Name:</td>
+                            <td id="assayInfo" class="legend_text"></td>
                         </tr>
                         <tr>
-                            <td>Dates:</td>
-                            <td id="datesInfo"></td>
+                            <td class="legend_text">Dates:</td>
+                            <td id="datesInfo" class="legend_text"></td>
                         </tr>
                         <tr>
-                            <td>Sources:</td>
-                            <td id="sourcesInfo"></td>
+                            <td class="legend_text">Sources:</td>
+                            <td id="sourcesInfo" class="legend_text"></td>
                         </tr>
                     </table>
                 </div>
@@ -353,20 +356,20 @@
                             <br/>
                             <table>
                                 <tr>
-                                    <td>Age Specific IFR</td>
-                                    <td width="30px" height="auto" id="legend_shape1"></td>
+                                    <td id="legend_shape1"></td>
+                                    <td class="legend_text">Age Specific IFR</td>
                                 </tr>
                                 <tr>
                                     <td width="30px" height="auto" id="legend_shape2"></td>
-                                    <td>Population IFR</td>
+                                    <td class="legend_text">Population IFR</td>
                                 </tr>
                                 <tr>
                                     <td width="30px" height="auto" id="legend_shape3"></td>
-                                    <td>Age Specific Prevalence</td>
+                                    <td class="legend_text">Age Specific Prevalence</td>
                                 </tr>
                                 <tr>
                                     <td width="30px" height="auto" id="legend_shape4"></td>
-                                    <td>Age Specific Prevalence</td>
+                                    <td class="legend_text">Age Specific Prevalence</td>
                                 </tr>
                             </table>
                         </div>
@@ -1209,7 +1212,7 @@
 
         var data = [age_specific_ifr,population_ifr,age_specific_prevalence,overall_prevalence]
         let id= "#legend_shape"
-        var scale = 0.75
+        var scale = 0.
         var font_size_sub = (1.1*scale)+"em"
         var font_size = scale+"em"
         var draw_size = 100
@@ -1300,7 +1303,6 @@
             .text("0.00%")
             .attr("class","legend_text")
             .style("fill",text_color)
-            .style("font-size",font_size);
 
         legendSvg.append("text")
             .attr("x",scale*(legend2_x_start+(width_rectangle/2)+x_extra_offset))
@@ -1309,7 +1311,6 @@
             .attr("id","legend_gradient_max")
             .attr("class","legend_text")
             .style("fill",text_color)
-            .style("font-size",font_size);
 
     }
 
