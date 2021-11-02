@@ -877,7 +877,7 @@
             console.dir(d3.selectAll("#forest_x_axis"))
             d3.selectAll("#forest_x_axis")
                 .transition().duration(3000)
-                .call(d3.axisLeft(forest_valueScale));
+                .call(d3.axisBottom(forest_valueScale));
         }
 
         var Tooltip = d3.select("#map")
