@@ -1217,14 +1217,14 @@
             console.log("id_to_select = "+id_to_select)
             let select = d3.select(id_to_select)
             console.dir(select)
-            select.append("g").
-            append("path")
+            select.append("g")
+            .append("path")
                 .attr("class", "legend_dots")
                 .style("fill", function(){
                     return(colorScale(20))
                 })
                 .attr("d", d3.symbol()
-                    .size(scale*10)
+                    .size(scale*40)
                     .type(function(){ 
                         console.log("data[i] = "+data[i])
                         console.log("getShape = "+getShape(data[i]))
