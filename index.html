@@ -1046,7 +1046,6 @@
         console.log("height forest plot = "+height)
         console.log("width forest plot = "+width)
 
-        forest_plot.style("margin",margin+"px")
    
 
         forest_valueScale = d3.scaleLinear().range([0, width])
@@ -1059,14 +1058,13 @@
         forest_plot.append("g")
             .attr("class","axis")
             .attr("id","forest_x_axis")
-            .attr("transform", "translate("+margin"," + height + ")")
+            .attr("transform", "translate("+margin+"," + height + ")")
             .call(d3.axisBottom(forest_valueScale));
 
         // Add the Y Axis
         forest_plot.append("g")
             .attr("class","axis")
             .attr("transform", "translate("+margin+",0)")
-            .transition().duration(3000)
             .call(d3.axisLeft(forest_positionScale));
 
     }
