@@ -1210,6 +1210,7 @@
         var scale = 0.75
         var font_size_sub = (1.1*scale)+"em"
         var font_size = scale+"em"
+        var draw_size = 60
 
         for (var i=0 ; i < data.length ; i ++){
             console.log("Data #"+i)
@@ -1218,8 +1219,8 @@
             let select = d3.select(id_to_select)
             console.dir(select)
             select.append("svg")
-            .attr('width', (scale*40)+'px')
-            .attr('height', (scale*40)+'px')
+            .attr('width', (draw_size)+'px')
+            .attr('height', (draw_size)+'px')
                 .append("path")
                 .attr("class", "legend_dots")
                 .style("fill", function(){
@@ -1227,7 +1228,7 @@
                     return("black")
                 })
                 .attr("d", d3.symbol()
-                    .size(scale*40)
+                    .size(draw_size)
                     .type(function(){ 
                         console.log("data[i] = "+data[i])
                         console.log("getShape = "+getShape(data[i]))
@@ -1235,6 +1236,7 @@
                     })
 
                 )
+                .attr("transform","translate("+draw_size+","+draw_size+")")
 
         }
 
