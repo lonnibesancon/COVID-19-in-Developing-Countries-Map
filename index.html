@@ -59,8 +59,15 @@
         bottom: 0px;
         /*top: 870px;   /*TODO:  fix;*/
     }
+
     fieldset{
         border-width: 0;
+        margin: 0;
+    }
+    .input_ui{
+        margin-left: 2em;
+        margin-bottom: 0.5em;
+        margin-top: 0.2em;
     }
 
     .tooltip{
@@ -233,23 +240,23 @@
             <div id="top_right">
                 <div id="allUI">
                     <div id="data_to_show">
-                        Visualize
+                        Data to visualise: 
                             <select name="encodeVariable" id="encodeVariable" onchange="changeEncodeVariable()"> 
                             </select> 
                     </div>
-                    <div id="date_div_start">
+                    <div id="date_div_start" class="input_ui">
                         Assay Starts:<br/>
                         Min Date <input type="date" id="minDateInputStart" name="minDateInputStart" onchange="changeMinStart()" value="2018-11-23"><br/>
                         Max Date <input type="date" id="maxDateInputStart" name="maxDateInputStart" onchange="changeMaxStart()" value="2020-11-23"><br/>
                     </div>
-                    <div id="date_div_end">
+                    <div id="date_div_end" class="input_ui">
                         Assay Ends:<br/>
                         Min Date <input type="date" id="minDateInputEnd" name="minDateInputEnd" onchange="changeMinEnd()" value="2018-11-23"><br/>
                         Max Date <input type="date" id="maxDateInputEnd" name="maxDateInputEnd" onchange="changeMaxEnd()" value="2020-11-23"><br/>
                     </div>
-                    <fieldset class="inline">
+                    Data location (uncheck to exclude):
+                    <fieldset class="inline input_ui">
                         <!--<legend>Data location (uncheck to exclude):</legend>-->
-                        Data location (uncheck to exclude):
                         <div>
                           <input type="checkbox" id="national" name="national" checked onchange="changeNational()">
                           <label for="national">National</label>
@@ -260,9 +267,9 @@
                         </div>
                     </fieldset>
 
-                    <fieldset class="inline">
+                    Data Source (uncheck to exclude):
+                    <fieldset class="inline input_ui">
                         <!--<legend>Data Source (uncheck to exclude):</legend>-->
-                        Data Source (uncheck to exclude):
                         <div>
                           <input type="checkbox" id="Age-specific-IFR" name="Age-specific-IFR" checked onchange="changeAgeIFR()">
                           <label for="Age-specific-IFR">Age-specific-IFR</label>
@@ -280,7 +287,8 @@
                             <label for="Overall-Prevalence">Overall-Prevalence</label>
                         </div>
                     </fieldset>
-                    <fieldset class="inline">
+                    Bias risks (uncheck to exclude):
+                    <fieldset class="inline input_ui">
                         <!--<legend>Bias risks (uncheck to exclude):</legend>-->
                         <table>
                             <tr>
