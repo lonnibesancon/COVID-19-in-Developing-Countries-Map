@@ -1065,8 +1065,7 @@
         forest_plot.append("g")
             .attr("class","axis")
             .attr("transform", "translate("+margin+",0)")
-            .call(d3.axisLeft(forest_positionScale))
-            .tickValues([]);
+            .call(d3.axisLeft(forest_positionScale).tickValues([]));
 
     }
 
