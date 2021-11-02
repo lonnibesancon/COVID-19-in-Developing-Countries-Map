@@ -1217,8 +1217,10 @@
             console.log("id_to_select = "+id_to_select)
             let select = d3.select(id_to_select)
             console.dir(select)
-            select.append("g")
-            .append("path")
+            select.append("svg").
+            .attr('width', (scale*40)+'px')
+            .attr('height', (scale*40)+'px')
+                .append("path")
                 .attr("class", "legend_dots")
                 .style("fill", function(){
                     //return(colorScale(20))
