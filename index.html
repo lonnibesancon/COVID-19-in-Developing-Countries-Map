@@ -872,6 +872,11 @@
             tmp.textContent = ""+max+"%"
 
             //d3.select("#forest_x_axis").call(d3.axisLeft(forest_positionScale))
+            console.log("Axis print")
+            console.dir(svg.selectAll("#forest_x_axis"))
+            svg.selectAll("#forest_x_axis")
+                .transition().duration(3000)
+                .call(d3.axisLeft(forest_positionScale));
         }
 
         var Tooltip = d3.select("#map")
