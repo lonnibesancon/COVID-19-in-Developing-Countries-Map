@@ -1213,6 +1213,7 @@
         var font_size_sub = (1.1*scale)+"em"
         var font_size = scale+"em"
         var draw_size = 100
+        var svg_size = 20
 
         for (var i=0 ; i < data.length ; i ++){
             console.log("Data #"+i)
@@ -1237,7 +1238,7 @@
                     })
 
                 )
-                .attr("transform","translate("+draw_size/2+","+draw_size/2+")")
+                .attr("transform","translate("+svg_size/2+","+svg_size/2+")")
 
         }
 
