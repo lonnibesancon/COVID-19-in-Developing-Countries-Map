@@ -871,7 +871,7 @@
             max = parseFloat(max).toFixed(2)
             tmp.textContent = ""+max+"%"
 
-            d3.select("#forest_x_axis").call(d3.axisLeft(forest_positionScale))
+            //d3.select("#forest_x_axis").call(d3.axisLeft(forest_positionScale))
         }
 
         var Tooltip = d3.select("#map")
@@ -1042,6 +1042,7 @@
         forest_plot.append("g")
             .attr("class","axis")
             .attr("transform", "translate("+(-margin/2)+",0)")
+            .transition().duration(3000)
             .call(d3.axisLeft(forest_positionScale));
 
     }
