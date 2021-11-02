@@ -109,9 +109,11 @@
     .float-child-right{
         width: 54%;
     }
-    .studyInfo{
+    
+    #studyInfo{
         border: 3px solid #000;
         float: bottom;
+        min-height: 300px;
     }
 
 
@@ -1294,7 +1296,7 @@
 
         legendSvg.append("text")
             .attr("x",scale*(legend2_x_start+(width_rectangle/2)+x_extra_offset))
-            .attr("y",scale*(45-10+y_offset))
+            .attr("y",scale*(45+y_offset))
             .text("0.00%")
             .attr("class","legend_text")
             .style("fill",text_color)
