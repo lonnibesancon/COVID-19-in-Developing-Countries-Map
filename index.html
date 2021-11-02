@@ -1221,7 +1221,8 @@
             .append("path")
                 .attr("class", "legend_dots")
                 .style("fill", function(){
-                    return(colorScale(20))
+                    //return(colorScale(20))
+                    return("rgba(255,255,255,1)")
                 })
                 .attr("d", d3.symbol()
                     .size(scale*40)
