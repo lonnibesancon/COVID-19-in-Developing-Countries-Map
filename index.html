@@ -1165,7 +1165,7 @@
 
         }
 
-        var legend2_x_start = 30
+        var legend2_x_start = 15
 
         //Now we want to make the continuous scale legend
         
@@ -1201,15 +1201,6 @@
             .style("stop-color", color2)
             .style("stop-opacity", 1)
 
-        /*legendSvg.append("text")
-            .attr("x",scale*(legend2_x_start))
-            .attr("y",scale*50)
-            .attr("id","gradient_legend")
-            .style('fill', '')
-            .text("Prevalence (in %)")
-            .attr("class","legend_text_sub legend_text")
-            .style("fill",text_color)
-            .style("font-size",font_size_sub);*/
 
         legendSvg.append("rect")
             .attr("width", width_rectangle)
@@ -1219,14 +1210,14 @@
             .attr("y",scale*(y_offset+60))
 
         legendSvg.append("text")
-            .attr("x",scale*(legend2_x_start+(width_rectangle/2)+x_extra_offset)-10)
+            .attr("x",scale*(legend2_x_start+(width_rectangle/2)+x_extra_offset))
             .attr("y",scale*(45+y_offset))
             .text("00.00%")
             .attr("class","legend_text")
             .style("fill",text_color)
 
         legendSvg.append("text")
-            .attr("x",scale*(legend2_x_start+(width_rectangle/2)+x_extra_offset)-10)
+            .attr("x",scale*(legend2_x_start+(width_rectangle/2)+x_extra_offset))
             .attr("y",scale*(height_rectangle+130+y_offset))
             .text(max_text+"%")
             .attr("id","legend_gradient_max")
