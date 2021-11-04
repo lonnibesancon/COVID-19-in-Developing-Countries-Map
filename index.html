@@ -1217,7 +1217,8 @@
             .style("fill",text_color)
 
         legendSvg.append("text")
-            .attr("x",scale*(legend2_x_start+x_extra_offset))
+            //.attr("x",scale*(legend2_x_start+x_extra_offset))
+            .attr("x",scale*(legend2_x_start))
             .attr("y",scale*(height_rectangle+130+y_offset))
             .text(max_text+"%")
             .attr("id","legend_gradient_max")
