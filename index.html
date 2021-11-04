@@ -4,8 +4,6 @@
 <meta charset="utf-8" />
 <title>Assessing the Burden of COVID-19 in Developing Countries: Systematic Review, Meta-Analysis, and Public Policy Implications</title>
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no"/>
-<!--<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js"></script>
-<link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css" rel="stylesheet"/>-->
 <script src="https://unpkg.com/maplibre-gl@1.15.2/dist/maplibre-gl.js"></script>
 <link href="https://unpkg.com/maplibre-gl@1.15.2/dist/maplibre-gl.css" rel="stylesheet" />
 <script src="https://d3js.org/d3.v5.min.js"></script>
@@ -417,63 +415,8 @@
     <div id="controls">
         <div id="inclusion">
             
-            <!--
-            <fieldset class="inline">
-                <legend>Seroreversion risk (uncheck to exclude):</legend>
-                <div>
-                  <input type="checkbox" id="SR_high" name="SR" checked onchange="changeSR()">
-                  <label for="Age-specific-IFR">High</label>
-                </div>
-                <div>
-                  <input type="checkbox" id="SR_low" name="SR" checked onchange="changeSR()">
-                  <label for="Population-IFR">Low</label>
-                </div>
-            </fieldset>
-            <fieldset class="inline">
-                <legend>Death undercount risk (uncheck to exclude):</legend>
-                <div>
-                  <input type="checkbox" id="DU_high" name="DU" checked onchange="changeDU()">
-                  <label for="DU_high">High</label>
-                </div>
-                <div>
-                  <input type="checkbox" id="DU_low" name="DU" checked onchange="changeDU()">
-                  <label for="DU_low">Low</label>
-                </div>
-                <div>
-                  <input type="checkbox" id="DU_NA" name="DU" checked onchange="changeDU()">
-                  <label for="DU_NA">NA</label>
-                </div>
-            </fieldset>
-            -->
-
-            <!--
-            <fieldset class="inline">
-                <legend>Prevalence distribution accross ages (uncheck to exclude):</legend>
-                <div>
-                  <input type="checkbox" id="uniform" name="uniform" checked onchange="changeUniform()">
-                  <label for="uniform">Uniform Prevalence By Age</label>
-                </div>
-                <div>
-                  <input type="checkbox" id="declining" name="declining" checked onchange="changeDecreasing()">
-                  <label for="declining">Declining Prevalence By Age</label>
-                </div>
-                <div>
-                  <input type="checkbox" id="increasing" name="increasing" checked onchange="changeIncreasing()">
-                  <label for="increasing">Increasing Prevalence By Age</label>
-                </div>
-            </fieldset>
-            -->
         </div>
     </div>
-    <!--<div id="map_container">
-        <div height="600" class="float-container">
-            <div class="float-child">
-                
-            </div>
-        </div>
-        <div id="map_container">
-        </div>
-    </div>-->
     
     <script>
 
@@ -703,15 +646,6 @@
                 if(include_national == false && elem.properties.location_label == "National Study"){
                     continue
                 }
-                /*if(include_uniform == false && elem.properties.AgeClassification == "Uniform"){
-                    continue
-                }
-                if(include_decreasing == false && elem.properties.AgeClassification == "Declining"){
-                    continue
-                }
-                if(include_increasing == false && elem.properties.AgeClassification == "Increasing"){
-                    continue
-                }*/
 
                 //If we focus on Seroprevalece, no problem, but if we focus on IFR, some elements won't have a value, we should remove them
                 if(variable_focus == possible_focus[1]){
@@ -921,55 +855,6 @@
                 .style("padding", "5px")
                 .style("position","absolute")
         
-        /*var mouseClickData = function(d) {
-
-            clickedData = true ;
-            //Tooltip.style("opacity", 1)
-            //tooltip_x = (d3.event.pageX+10) + "px"
-            //tooltip_y = (d3.event.pageY-offsetYTooltip) + "px"
-
-            var projection = project(d.geometry.coordinates)
-            tooltip_ref_point_coordinates = d.geometry.coordinates ;
-            var tooltip_x = (projection.x+tooltipXOffset)+"px"
-            var tooltip_y = (projection.y+tooltipYOffset)+"px"
-            var location
-            if(d.properties.location_label == "National Study"){
-                location = d.properties.country +" [National Study]"
-            }
-            else{
-                location = (d.properties.location_label + " ["+d.properties.country+"]")
-
-            }
-
-            let dates = toShortString(d.properties.start_date) + " -- " + toShortString(d.properties.end_date)
-            let links = ""
-            if(d.properties.link_one != ''){
-                links += "<a href='"+d.properties.link_one+"'>Link1</a>"
-            }
-            if(d.properties.link_two != ''){
-                links += "; <a href='"+d.properties.link_two+"'>Link2 </a>"
-            }
-
-            let seroprevalence_info = ""+d.properties.mean+ " ["+d.properties.p025+" ; "+d.properties.p975+" ]"
-            let ifr_info = "NA"
-            if(d.properties.IFR_mean != ""){
-                ifr_info = ""+d.properties.IFR_mean+ " ["+d.properties.IFR_p025+" ; "+d.properties.IFR_p975+" ]"
-            }
-            
-            document.getElementById("locationInfo").textContent = location
-            document.getElementById("studyInfo").textContent = d.properties.study_info
-            document.getElementById("seroprevalenceInfo").textContent = seroprevalence_info
-            document.getElementById("IFRInfo").textContent = ifr_info
-            document.getElementById("assayInfo").textContent = d.properties.assay_name
-            document.getElementById("datesInfo").textContent = dates
-            document.getElementById("sourcesInfo").innerHTML = datum.properties.source +"<br/>"+ links
-            //d3.select("#sourcesInfo").html = d.properties.source + links
-
-            //Tooltip
-            .html("Location:<br>"+location + "<br><br>Type:<br>" + d.properties.study_info + "<br><br>Seroprevalence: " + seroprevalence_info+ "<br>IFR: "+ifr_info+"<br><br>Assay name:<br>"+d.properties.assay_name + "<br><br>Dates:<br>" + dates + "<br><br>Source:<br>"+ d.properties.source + links)
-            .style("left", tooltip_x)
-            .style("top", tooltip_y)
-        }*/
         
         
         var mouseClickMap = function(d) {
@@ -984,15 +869,14 @@
         
 
         /****** Map bits*****/
-
-        //mapboxgl.accessToken = "pk.eyJ1IjoibG9ubmliZXNhbmNvbiIsImEiOiJjamxjaWNpOHQwMHV0M3FwaHhneGhvY2l2In0.7GxI8W_dnTKITNF4hEvZeQ";
+        
 
         var map;
 
 
         /****** Display code *****/
 
-        d3.csv("./map_data.csv", d3.autoType)
+        d3.csv("https://raw.githubusercontent.com/covid-ifr/assessing-burden/main/map/map_data.csv", d3.autoType)
             .then(function(data){
                 initial_data = JSON.parse(JSON.stringify(data))
                 //initial_data = data
@@ -1012,8 +896,6 @@
         function createMap() {
             map = new maplibregl.Map({
             container: "map", // container id
-            //style: "mapbox://styles/mapbox/light-v9", // stylesheet location
-            //style: "mapbox://styles/lobenichou/cjto9zfpj00jq1fs7gajbuaas?fresh=true",
             //style: "https://api.maptiler.com/maps/darkmatter/style.json?key=vzWoiH8YygJqMjY0TcSt",
             style: style_link,
             zoom: 1.8, // starting zoom
@@ -1615,11 +1497,6 @@
 
 
 
-        /*function updateMaxMinForColorScale(data, column_name){
-            var max =d3.max(data, function(d) {  return +d[column_name]; });
-            var min =d3.min(data, function(d) {  return +d[column_name];})
-            colorScale.domain([0,max_value]);
-        }*/
 
 
         function getShape(input){
