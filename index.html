@@ -1210,7 +1210,8 @@
             .attr("y",scale*(y_offset+60))
 
         legendSvg.append("text")
-            .attr("x",scale*(legend2_x_start+x_extra_offset))
+            //.attr("x",scale*(legend2_x_start+x_extra_offset))
+            .attr("x",scale*(legend2_x_start))
             .attr("y",scale*(45+y_offset))
             .text("00.00%")
             .attr("class","legend_text")
